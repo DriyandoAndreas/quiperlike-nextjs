@@ -2,24 +2,28 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const Sidebar: React.FC = () => {
+export default function SideBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdonwKampusOpen, setIsDropdonwKampusOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const toggleDropdownKampus = () => {
+    setIsDropdonwKampusOpen(!isDropdonwKampusOpen);
+  };
 
   return (
-    <div className="h-screen bg-slate-300 w-64 space-y-6 py-7 px-4">
+    <div className="h-screen  w-64 space-y-6 py-6 px-4 overflow-auto">
       {/* bisa menambahkan title disini */}
       <nav>
         <div className="space-y-1">
-          <div className="relative">
+          <div className="relative space-y-2">
             <button
               onClick={toggleDropdown}
-              className="flex items-center justify-between w-full px-4 py-2 text-left bg-slate-400 rounded-lg hover:bg-white"
+              className="flex items-center justify-between w-full px-4 py-2 text-left"
             >
-              <span>Data Prodi</span>
+              <span>Prodi</span>
               <svg
                 className={`w-5 h-5 transition-transform ${
                   isDropdownOpen ? "transform rotate-180" : ""
@@ -38,48 +42,86 @@ const Sidebar: React.FC = () => {
               </svg>
             </button>
             {isDropdownOpen && (
-              <div className="mt-2 space-y-2">
+              <div className="mt-2 space-y-2 mx-2">
                 <Link
-                  href="/data-bidang-studi"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/prodi"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
+                >
+                  Data Prodi
+                </Link>
+                <Link
+                  href="/dashboard/bidang-studi"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Bidang Studi
                 </Link>
                 <Link
-                  href="/data-kategori-skill"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/kategori-skill"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Kategori Skill
                 </Link>
                 <Link
-                  href="/data-skills"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/skill"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Skills
                 </Link>
                 <Link
-                  href="/data-kategori-kelebihan-prodi"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/kategori-kelebihan"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Kategori Kelebihan Prodi
                 </Link>
                 <Link
-                  href="/data-kelebihan"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/kelebihan"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Kelebihan
                 </Link>
                 <Link
-                  href="/data-kategori-kampus"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/kategori-kampus"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Kategori Kampus
                 </Link>
                 <Link
-                  href="/data-kampus-terkait"
-                  className="block px-4 py-2 text-sm  bg-slate-400 rounded-lg hover:bg-white"
+                  href="/dashboard/kampus-terkait"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
                 >
                   Data Kampus Terkait
+                </Link>
+              </div>
+            )}
+            <button
+              onClick={toggleDropdownKampus}
+              className="flex items-center justify-between w-full px-4 py-2 text-left"
+            >
+              <span>Kampus</span>
+              <svg
+                className={`w-5 h-5 transition-transform ${
+                  isDropdonwKampusOpen ? "transform rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            {isDropdonwKampusOpen && (
+              <div className="mt-2 space-y-2 mx-2">
+                <Link
+                  href="/data-bidang-studi"
+                  className="block px-4 py-2 text-sm text-gray-500 hover:text-black"
+                >
+                  Data Kampus
                 </Link>
               </div>
             )}
@@ -88,6 +130,4 @@ const Sidebar: React.FC = () => {
       </nav>
     </div>
   );
-};
-
-export default Sidebar;
+}
