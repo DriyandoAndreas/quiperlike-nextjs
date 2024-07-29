@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 
@@ -14,7 +15,7 @@ export default function SideBar() {
   };
 
   return (
-    <div className="h-screen  w-64 space-y-6 py-6 px-4 overflow-auto">
+    <div className="h-screen  w-64 space-y-6 py-4 px-4 overflow-auto">
       {/* bisa menambahkan title disini */}
       <nav>
         <div className="space-y-1">

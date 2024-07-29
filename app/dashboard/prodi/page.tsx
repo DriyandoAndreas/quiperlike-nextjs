@@ -1,3 +1,3 @@
 export default function Prodi() {
-  return <div>Prodi</div>;
+  return <div className="p-5">CONTENT PRODI</div>;
 }

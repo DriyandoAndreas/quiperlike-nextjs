@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Avatar, AvatarImage } from "./avatar";
 
-
 export default function Navbar() {
   return (
     <div className="bg-black">
