@@ -41,6 +41,7 @@ model prodi {
 model bidang_studi {
   bidang_studi_id   Int     @id @default(autoincrement())
   nama_bidang_studi String  @unique @db.VarChar(255)
+  deskripsi_bidang_studi String @db.LongText
   prodi             prodi[]
 }
 
