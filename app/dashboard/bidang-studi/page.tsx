@@ -86,7 +86,6 @@ export default function BidangStudi() {
           </Dialog>
         </div>
       </div>
-      {/* list data table bidang studi */}
     </div>
   );
 }
