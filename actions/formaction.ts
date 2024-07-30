@@ -1,15 +1,12 @@
 'use server';
 
 import prisma from "@/lib/prismadb";
+import { revalidatePath } from "next/cache";
 
 export async function CreateBidangStudi(formData: FormData) {
   try {
     const namaBidangStudi = formData.get("nama_bidang_studi") as string;
     const deskripsiBidangStudi = formData.get("deskripsi_bidang_studi") as string;
-
-    if (!namaBidangStudi || !deskripsiBidangStudi) {
-      throw new Error("Semua bidang wajib diisi");
-    }
 
     await prisma.bidang_studi.create({
       data: {
@@ -17,7 +14,7 @@ export async function CreateBidangStudi(formData: FormData) {
         deskripsi_bidang_studi: deskripsiBidangStudi,
       },
     });
-
+    revalidatePath("/dashboard/bidang-studi")
     return {
       status: 200,
       message: "Bidang studi berhasil ditambahkan",
