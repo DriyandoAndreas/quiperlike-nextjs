@@ -55,10 +55,10 @@ export async function EditBidangStudi(formData: FormData) {
       message: "Bidang studi berhasil ditambahkan",
     };
   } catch (error) {
-    console.error("Error creating bidang studi:", error);
+    console.error("Error edit bidang studi:", error);
     return {
       status: 500,
-      message: "Terjadi kesalahan saat menambahkan bidang studi",
+      message: "Terjadi kesalahan saat edit bidang studi",
     };
   }
 }
@@ -72,13 +72,13 @@ export async function DeleteBidangStudi(id:number) {
     revalidatePath("/dashboard/bidang-studi")
     return {
       status: 200,
-      message: "Bidang studi berhasil ditambahkan",
+      message: "Bidang studi berhasil dihapus",
     };
   } catch (error) {
-    console.error("Error creating bidang studi:", error);
+    console.error("Error hapus bidang studi:", error);
     return {
       status: 500,
-      message: "Terjadi kesalahan saat menambahkan bidang studi",
+      message: "Terjadi kesalahan saat hapus bidang studi",
     };
   }
 }
