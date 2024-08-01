@@ -25,6 +25,17 @@ export default function FormEditBidangStudi({ id }: FormEditBidangStudiProps) {
     nama_bidang_studi: "",
     deskripsi_bidang_studi: "",
   });
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => setIsDialogOpen(true);
+  const closeDialog = () => setIsDialogOpen(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    await EditBidangStudi(formData);
+    closeDialog(); // Tutup modal setelah form disubmit
+  };
 
   useEffect(() => {
     async function getData() {
@@ -40,9 +51,9 @@ export default function FormEditBidangStudi({ id }: FormEditBidangStudiProps) {
 
   return (
     <>
-      <Dialog>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button variant={"outline"} className="max-w-fit">
+          <Button variant={"outline"} onClick={openDialog}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -61,7 +72,7 @@ export default function FormEditBidangStudi({ id }: FormEditBidangStudiProps) {
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
-          <form action={EditBidangStudi}>
+          <form onSubmit={handleSubmit}>
             <input type="hidden" name="id" value={id} />
             <DialogHeader className="py-2">
               <DialogTitle>Form Edit Data Bidang Studi</DialogTitle>

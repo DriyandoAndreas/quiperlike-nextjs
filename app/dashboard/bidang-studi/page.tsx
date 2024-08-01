@@ -1,4 +1,4 @@
-import FormBidangStudi from "./component/formdata";
+import FormBidangStudi from "./component/formadd";
 import  ListData from "./component/listdata";
 export default function BidangStudi() {
   return (

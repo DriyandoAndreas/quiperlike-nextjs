@@ -1,3 +1,4 @@
+"use client";
 import { CreateBidangStudi } from "@/actions/formaction";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,13 +14,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 
 export default function FormBidangStudi() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => setIsDialogOpen(true);
+  const closeDialog = () => setIsDialogOpen(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    await CreateBidangStudi(formData);
+    closeDialog(); // Tutup modal setelah form disubmit
+  };
   return (
     <>
-      <Dialog>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">
+          <Button variant="outline" onClick={openDialog}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -38,7 +51,7 @@ export default function FormBidangStudi() {
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
-          <form action={CreateBidangStudi}>
+          <form onSubmit={handleSubmit}>
             <DialogHeader className="py-2">
               <DialogTitle>Form Tambah Data Bidang Studi</DialogTitle>
               <DialogDescription>
@@ -84,5 +97,3 @@ export default function FormBidangStudi() {
     </>
   );
 }
-
-
