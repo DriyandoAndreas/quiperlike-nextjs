@@ -6,6 +6,7 @@ export default async function ListData() {
   const listData = await prisma.bidang_studi.findMany();
   return (
     <>
+      {/* TODO: pagegination 10 per halaman */}
       <DataTable columns={column} data={listData} />
     </>
   );

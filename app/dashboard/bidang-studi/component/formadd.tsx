@@ -1,6 +1,7 @@
 "use client";
 import { CreateBidangStudi } from "@/actions/formaction";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
   DialogClose,
@@ -16,13 +17,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
-interface FormBidangStudiProps {
-  onFormSubmit: (message: string) => void;
-}
 
 export default function FormBidangStudi() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+  const { toast } = useToast();
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);
 
@@ -30,6 +28,7 @@ export default function FormBidangStudi() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     await CreateBidangStudi(formData);
+    toast({ description: "Data berhasil ditambahkan" });
     closeDialog();
   };
   return (
