@@ -53,11 +53,11 @@ export const column: ColumnDef<BidangStudi>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="flex-col p-4">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <div className="py-2">
+            <DropdownMenuLabel className="text-center">Actions</DropdownMenuLabel>
+            <div className="py-2 text-center">
               <FormEditBidangStudi id={ListData.bidang_studi_id} />
             </div>
-            <div className="py-2">
+            <div className="py-2 text-center">
               <DeleteForm id={ListData.bidang_studi_id}/>
             </div>
           </DropdownMenuContent>
