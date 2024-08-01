@@ -52,7 +52,7 @@ export const column: ColumnDef<BidangStudi>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="flex-col p-4">
+          <DropdownMenuContent className="flex-col">
             <DropdownMenuLabel className="text-center">Actions</DropdownMenuLabel>
             <div className="py-2 text-center">
               <FormEditBidangStudi id={ListData.bidang_studi_id} />
