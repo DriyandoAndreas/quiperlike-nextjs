@@ -16,14 +16,17 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 type BidangStudiIdProps = {
-    id: number,
-}
+  id: number;
+};
 export default function DeleteForm({ id }: BidangStudiIdProps) {
-     const { toast } = useToast();
-      const handleDelete = async () => {
-          await DeleteBidangStudi(id);
-           toast({ description: "Data berhasil dihapus" });
-      };
+  const { toast } = useToast();
+  const handleDelete = async () => {
+    await DeleteBidangStudi(id);
+    toast({
+      variant: "destructive",
+      description: "Data berhasil dihapus",
+    });
+  };
   return (
     <div>
       <AlertDialog>
