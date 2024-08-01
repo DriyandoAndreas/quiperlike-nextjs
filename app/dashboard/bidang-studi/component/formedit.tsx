@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { getBidangStudiById } from "@/actions/formaction";
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,7 @@ export default function FormEditBidangStudi({ id }: FormEditBidangStudiProps) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     await EditBidangStudi(formData);
-    closeDialog(); // Tutup modal setelah form disubmit
+    closeDialog();
   };
 
   useEffect(() => {

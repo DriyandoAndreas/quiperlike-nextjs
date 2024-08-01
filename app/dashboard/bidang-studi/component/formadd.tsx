@@ -16,6 +16,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
+interface FormBidangStudiProps {
+  onFormSubmit: (message: string) => void;
+}
+
 export default function FormBidangStudi() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -26,7 +30,7 @@ export default function FormBidangStudi() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     await CreateBidangStudi(formData);
-    closeDialog(); // Tutup modal setelah form disubmit
+    closeDialog();
   };
   return (
     <>
