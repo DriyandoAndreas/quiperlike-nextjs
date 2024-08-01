@@ -6,4 +6,4 @@ This for a high school student who looking for information about university
 
 **Client:** NextJs, TailwindCSS, Shadcn/ui
 
-**Server:** NextJs, Prisma ORM, MySql, PostgreSQL
+**Server:** NextJs, Prisma ORM, MySql, Postgre
