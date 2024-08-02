@@ -2,7 +2,14 @@
 
 import prisma from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
-
+//get
+export async function getBidangStudiById(id:number) {
+  const bidangStudi = await prisma.bidang_studi.findFirst({
+    where: { bidang_studi_id: id },
+  });
+  return bidangStudi;
+}
+//add
 export async function CreateBidangStudi(formData: FormData) {
   try {
     const namaBidangStudi = formData.get("nama_bidang_studi") as string;
@@ -27,13 +34,7 @@ export async function CreateBidangStudi(formData: FormData) {
     };
   }
 }
-export async function getBidangStudiById(id:number) {
-  const bidangStudi = await prisma.bidang_studi.findFirst({
-    where: { bidang_studi_id: id },
-  });
-  return bidangStudi;
-}
-
+//edit
 export async function EditBidangStudi(formData: FormData) {
   try {
     const id = Number(formData.get("id"));
@@ -62,6 +63,7 @@ export async function EditBidangStudi(formData: FormData) {
     };
   }
 }
+//delete
 export async function DeleteBidangStudi(id:number) {
   try {
     await prisma.bidang_studi.delete({

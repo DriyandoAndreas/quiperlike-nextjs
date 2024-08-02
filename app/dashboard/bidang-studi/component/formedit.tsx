@@ -18,11 +18,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-
+//TODO: use zod for validation
 type FormEditBidangStudiProps = {
   id: number;
 };
-
 export default function FormEditBidangStudi({ id }: FormEditBidangStudiProps) {
   const [data, setData] = useState({
     nama_bidang_studi: "",

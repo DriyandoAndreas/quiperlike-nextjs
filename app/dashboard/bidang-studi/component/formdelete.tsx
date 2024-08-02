@@ -28,7 +28,7 @@ export default function DeleteForm({ id }: BidangStudiIdProps) {
     });
   };
   return (
-    <div>
+    <>
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button variant="outline">
@@ -50,6 +50,6 @@ export default function DeleteForm({ id }: BidangStudiIdProps) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </>
   );
 }
