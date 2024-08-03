@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { LogOut } from "lucide-react";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Menu,SquareChevronLeft } from "lucide-react";
+import { Menu, SquareChevronLeft, CircleX } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
@@ -28,7 +28,9 @@ export default function SideBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isOpenDashBoardMenu, setOpenDashBoardMenu] = useState(false);
   const [isDropdonwKampusOpen, setIsDropdonwKampusOpen] = useState(false);
+  const [isMobile, setMobile] = useState(false);
   const { setTheme } = useTheme();
+  const sidebarRef = useRef<HTMLDivElement>(null);
   //button handler
   const toggleDashboardMenu = () => {
     setOpenDashBoardMenu(!isOpenDashBoardMenu);
@@ -39,14 +41,40 @@ export default function SideBar() {
   const toggleDropdownKampus = () => {
     setIsDropdonwKampusOpen(!isDropdonwKampusOpen);
   };
-
+  const toggleMobileMenu = () => {
+    setMobile(!isMobile);
+  };
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target as Node)
+    ) {
+      setMobile(false);
+    }
+  };
+  //effect note: belum paham kegunaannya, find out later
+  useEffect(() => {
+    if (isMobile) {
+      document.addEventListener("click", handleClickOutside, true);
+    } else {
+      document.removeEventListener("click", handleClickOutside, true);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [isMobile]);
   return (
     <>
+      {isMobile && (
+        <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
+      )}
       <div className="block md:hidden ">
         <nav>
           <div className="flex flex-row justify-between p-4 items-center">
             <div>
-              <Menu size={24} />
+              <button>
+                <Menu onClick={toggleMobileMenu} size={24} />
+              </button>
             </div>
             <div>
               <Avatar>
@@ -56,6 +84,127 @@ export default function SideBar() {
             </div>
           </div>
         </nav>
+        {isMobile && (
+          <div ref={sidebarRef}>
+            <div className="h-full bg-white dark:bg-black z-50 fixed  flex flex-col w-64 space-y-4 top-0 left-0 ">
+              <div className="p-4 flex flex-row justify-end">
+                <button>
+                  <CircleX onClick={toggleMobileMenu} />
+                </button>
+              </div>
+              <div className="mt-2 space-y-2 mx-2 overflow-auto">
+                <div className="relative space-y-2">
+                  <button
+                    onClick={toggleDropdown}
+                    className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  hover:bg-gray-200 dark:hover:text-black"
+                  >
+                    <span>Prodi</span>
+                    <svg
+                      className={`w-5 h-5 transition-transform ${
+                        isDropdownOpen ? "transform rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  {isDropdownOpen && (
+                    <div className="mt-2 space-y-2 mx-2">
+                      <Link
+                        href="/dashboard/prodi"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Prodi
+                      </Link>
+                      <Link
+                        href="/dashboard/bidang-studi"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Bidang Studi
+                      </Link>
+                      <Link
+                        href="/dashboard/kategori-skill"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Kategori Skill
+                      </Link>
+                      <Link
+                        href="/dashboard/skill"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Skills
+                      </Link>
+                      <Link
+                        href="/dashboard/kategori-kelebihan"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Kategori Kelebihan Prodi
+                      </Link>
+                      <Link
+                        href="/dashboard/kelebihan"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Kelebihan
+                      </Link>
+                      <Link
+                        href="/dashboard/kategori-kampus"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Kategori Kampus
+                      </Link>
+                      <Link
+                        href="/dashboard/kampus-terkait"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Kampus Terkait
+                      </Link>
+                    </div>
+                  )}
+                  <button
+                    onClick={toggleDropdownKampus}
+                    className="flex items-center justify-between w-full px-4 py-2 text-left  rounded-sm  hover:bg-gray-200 dark:hover:text-black"
+                  >
+                    <span>Kampus</span>
+                    <svg
+                      className={`w-5 h-5 transition-transform ${
+                        isDropdonwKampusOpen ? "transform rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  {isDropdonwKampusOpen && (
+                    <div className="mt-2 space-y-2 mx-2">
+                      <Link
+                        href="/data-bidang-studi"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                      >
+                        Data Kampus
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <aside
         className={` hidden md:h-screen md:flex md:flex-col ${

@@ -99,7 +99,7 @@ export default function FormEditBidangStudi({ id }: FormEditBidangStudiProps) {
                 ></Textarea>
               </div>
             </div>
-            <DialogFooter className="sm:justify-between py-2">
+            <DialogFooter className="py-2 gap-2 md:gap-0 sm:justify-between">
               <DialogClose asChild>
                 <Button
                   type="button"
