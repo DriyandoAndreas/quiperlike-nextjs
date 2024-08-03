@@ -41,27 +41,39 @@ export default function SideBar() {
   return (
     <aside
       className={`h-screen flex flex-col ${
-        isOpenDashBoardMenu ? "w-0" : "w-64"
+        isOpenDashBoardMenu ? "w-16" : "w-64"
       } space-y-6 py-4 px-4 sticky top-0 border-r`}
     >
-      <div className="px-4">
-        <div className="flex flex-row items-center space-x-2 justify-between">
-          <div>DASHBOARD</div>
+      <div className={`${isOpenDashBoardMenu ? "p-0": "px-4"}`}>
+        <div className={`${isOpenDashBoardMenu ? "" : "flex flex-row items-center space-x-2 justify-between"}`}>
+          <div className={`${isOpenDashBoardMenu ? "hidden" : ""}`}>DASHBOARD</div>
           <div>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger onClick={toggleDashboardMenu}>
-                  <SquareChevronLeft />
+                  <SquareChevronLeft
+                    className={`transition-transform ${
+                      isOpenDashBoardMenu ? "transform rotate-180" : ""
+                    }`}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Close Dashboard</p>
+                  {isOpenDashBoardMenu ? (
+                    <p>Open Dashboard</p>
+                  ) : (
+                    <p>Close Dashboard</p>
+                  )}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
         </div>
       </div>
-      <nav className="h-full overflow-auto">
+      <nav
+        className={`${
+          isOpenDashBoardMenu ? "hidden" : "h-full overflow-auto "
+        }`}
+      >
         <div className="space-y-1">
           <div className="relative space-y-2">
             <button
@@ -173,7 +185,7 @@ export default function SideBar() {
           </div>
         </div>
       </nav>
-      <div className="px-4 py-2 border rounded-sm">
+      <div className={`${isOpenDashBoardMenu ? "hidden" : "px-4 py-2"} `}>
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row space-x-2 items-center">
             <div className="">
