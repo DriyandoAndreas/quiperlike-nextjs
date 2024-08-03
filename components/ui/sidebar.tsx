@@ -6,7 +6,7 @@ import { LogOut } from "lucide-react";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Menu, SquareChevronLeft, CircleX } from "lucide-react";
+import { Menu, SquareChevronLeft, CircleX, ChevronDown } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
@@ -99,22 +99,11 @@ export default function SideBar() {
                     className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  hover:bg-gray-200 dark:hover:text-black"
                   >
                     <span>Prodi</span>
-                    <svg
-                      className={`w-5 h-5 transition-transform ${
+                    <ChevronDown
+                      className={`${
                         isDropdownOpen ? "transform rotate-180" : ""
                       }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
-                    </svg>
+                    />
                   </button>
                   {isDropdownOpen && (
                     <div className="mt-2 space-y-2 mx-2">
@@ -173,22 +162,11 @@ export default function SideBar() {
                     className="flex items-center justify-between w-full px-4 py-2 text-left  rounded-sm  hover:bg-gray-200 dark:hover:text-black"
                   >
                     <span>Kampus</span>
-                    <svg
-                      className={`w-5 h-5 transition-transform ${
+                    <ChevronDown
+                      className={`${
                         isDropdonwKampusOpen ? "transform rotate-180" : ""
                       }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
-                    </svg>
+                    />
                   </button>
                   {isDropdonwKampusOpen && (
                     <div className="mt-2 space-y-2 mx-2">
@@ -256,22 +234,9 @@ export default function SideBar() {
                 className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  hover:bg-gray-200 dark:hover:text-black"
               >
                 <span>Prodi</span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
-                    isDropdownOpen ? "transform rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
+                <ChevronDown
+                  className={`${isDropdownOpen ? "transform rotate-180" : ""}`}
+                />
               </button>
               {isDropdownOpen && (
                 <div className="mt-2 space-y-2 mx-2">
@@ -330,22 +295,11 @@ export default function SideBar() {
                 className="flex items-center justify-between w-full px-4 py-2 text-left  rounded-sm  hover:bg-gray-200 dark:hover:text-black"
               >
                 <span>Kampus</span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
+                <ChevronDown
+                  className={`${
                     isDropdonwKampusOpen ? "transform rotate-180" : ""
                   }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
+                />
               </button>
               {isDropdonwKampusOpen && (
                 <div className="mt-2 space-y-2 mx-2">
