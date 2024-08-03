@@ -86,7 +86,7 @@ export default function SideBar() {
         </nav>
         {isMobile && (
           <div ref={sidebarRef}>
-            <div className="h-full bg-white dark:bg-black z-50 fixed  flex flex-col w-64 space-y-4 top-0 left-0 ">
+            <div className="h-full bg-white dark:bg-black z-50 fixed  flex flex-col w-64 space-y-4 top-0 left-0 transition-all ">
               <div className="p-4 flex flex-row justify-end">
                 <button>
                   <CircleX onClick={toggleMobileMenu} />
@@ -100,7 +100,7 @@ export default function SideBar() {
                   >
                     <span>Prodi</span>
                     <ChevronDown
-                      className={`${
+                      className={`transition-transform ${
                         isDropdownOpen ? "transform rotate-180" : ""
                       }`}
                     />
@@ -163,7 +163,7 @@ export default function SideBar() {
                   >
                     <span>Kampus</span>
                     <ChevronDown
-                      className={`${
+                      className={`transition-transform ${
                         isDropdonwKampusOpen ? "transform rotate-180" : ""
                       }`}
                     />
@@ -235,7 +235,9 @@ export default function SideBar() {
               >
                 <span>Prodi</span>
                 <ChevronDown
-                  className={`${isDropdownOpen ? "transform rotate-180" : ""}`}
+                  className={`transition-transform ${
+                    isDropdownOpen ? "transform rotate-180" : ""
+                  }`}
                 />
               </button>
               {isDropdownOpen && (
@@ -296,7 +298,7 @@ export default function SideBar() {
               >
                 <span>Kampus</span>
                 <ChevronDown
-                  className={`${
+                  className={`transition-transform ${
                     isDropdonwKampusOpen ? "transform rotate-180" : ""
                   }`}
                 />
