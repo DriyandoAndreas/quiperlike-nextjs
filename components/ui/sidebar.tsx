@@ -6,7 +6,13 @@ import { LogOut } from "lucide-react";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-
+import { SquareChevronLeft } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,12 +20,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
- 
 
 export default function SideBar() {
+  //state
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isOpenDashBoardMenu, setOpenDashBoardMenu] = useState(false);
   const [isDropdonwKampusOpen, setIsDropdonwKampusOpen] = useState(false);
   const { setTheme } = useTheme();
+  //button handler
+  const toggleDashboardMenu = () => {
+    setOpenDashBoardMenu(!isOpenDashBoardMenu);
+  };
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -28,35 +39,28 @@ export default function SideBar() {
   };
 
   return (
-    <aside className="h-screen flex flex-col w-64 space-y-6 py-4 px-4 sticky top-0 border-r">
+    <aside
+      className={`h-screen flex flex-col ${
+        isOpenDashBoardMenu ? "w-0" : "w-64"
+      } space-y-6 py-4 px-4 sticky top-0 border-r`}
+    >
       <div className="px-4">
-        <div className="flex flex-row items-center space-x-2">
-          <div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">Toggle theme</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                  Light
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                  Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                  System
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+        <div className="flex flex-row items-center space-x-2 justify-between">
           <div>DASHBOARD</div>
+          <div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger onClick={toggleDashboardMenu}>
+                  <SquareChevronLeft />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Close Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
       </div>
-
       <nav className="h-full overflow-auto">
         <div className="space-y-1">
           <div className="relative space-y-2">
@@ -171,9 +175,33 @@ export default function SideBar() {
       </nav>
       <div className="px-4 py-2 border rounded-sm">
         <div className="flex flex-row justify-between items-center">
-          <div className="text-left">Admin</div>
+          <div className="flex flex-row space-x-2 items-center">
+            <div className="">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    <span className="sr-only">Toggle theme</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setTheme("light")}>
+                    Light
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    Dark
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("system")}>
+                    System
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div className="">Admin</div>
+          </div>
           <div className="p-2 rounded-sm bg-red-600 text-white">
-            <LogOut />
+            <LogOut size={16} />
           </div>
         </div>
       </div>
