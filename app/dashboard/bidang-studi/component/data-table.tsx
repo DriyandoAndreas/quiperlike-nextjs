@@ -36,10 +36,8 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      style={{
-                        minWidth: header.column.columnDef.size,
-                        maxWidth: header.column.columnDef.size,
-                      }}
+                      className="text-black dark:text-white"
+                      
                     >
                       {header.isPlaceholder
                         ? null

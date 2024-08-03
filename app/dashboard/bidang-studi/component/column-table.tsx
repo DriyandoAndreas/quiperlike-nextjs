@@ -21,29 +21,25 @@ export const column: ColumnDef<BidangStudi>[] = [
   {
     accessorKey: "bidang_studi_id",
     header: "ID",
-    size: 50,
   },
   {
     accessorKey: "nama_bidang_studi",
     header: "Nama Bidang Studi",
-    size: 200,
   },
   {
     accessorKey: "deskripsi_bidang_studi",
     header: "Deskripsi Bidang Studi",
   },
   {
-    
     id: "actions",
-    size: 50,
+
     cell: ({ row }) => {
       const ListData = row.original;
-    
-      
+
       const handleDelete = async () => {
         await DeleteBidangStudi(ListData.bidang_studi_id);
       };
-      
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -53,12 +49,14 @@ export const column: ColumnDef<BidangStudi>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="flex-col">
-            <DropdownMenuLabel className="text-center">Actions</DropdownMenuLabel>
+            <DropdownMenuLabel className="text-center">
+              Actions
+            </DropdownMenuLabel>
             <div className="py-2 text-center">
               <FormEditBidangStudi id={ListData.bidang_studi_id} />
             </div>
             <div className="py-2 text-center">
-              <DeleteForm id={ListData.bidang_studi_id}/>
+              <DeleteForm id={ListData.bidang_studi_id} />
             </div>
           </DropdownMenuContent>
         </DropdownMenu>
