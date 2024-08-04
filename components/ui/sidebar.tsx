@@ -66,10 +66,10 @@ export default function SideBar() {
   }, [isMobile]);
   const getLinkClasses = (path: string) =>
     router === path
-      ? "text-black underline underline-offset-2"
+      ? "text-black dark:text-white underline underline-offset-2"
       : "text-gray-500 hover:text-black dark:hover:text-white";
   const isParentActive = (paths: Array<String>) => {
-    return paths.includes(router) ? "bg-gray-200" : "";
+    return paths.includes(router) ? "bg-gray-200 dark:text-black" : "";
   };
   return (
     // TODO: active class belum di konfigurasi
@@ -216,7 +216,9 @@ export default function SideBar() {
                 <div className="mt-2 space-y-2 mx-2">
                   <Link
                     href="/dashboard/data-kampus"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/data-kampus"
+                    )}`}
                   >
                     Data Kampus
                   </Link>
@@ -380,7 +382,9 @@ export default function SideBar() {
                 <div className="mt-2 space-y-2 mx-2">
                   <Link
                     href="/dashboard/data-kampus"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/data-kampus"
+                    )}`}
                   >
                     Data Kampus
                   </Link>
