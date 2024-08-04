@@ -25,21 +25,7 @@ import {
 
 export default function SideBar() {
   //data
-  const childLinkProdi = [
-    "/dashboard/prodi",
-    "/dashboard/bidang-studi",
-    "/dashboard/kategori-skill",
-    "/dashboard/skill",
-    "/dashboard/kategori-kelebihan",
-    "/dashboard/kelebihan",
-    "/dashboard/kategori-kampus",
-    "/dashboard/kampus-terkait",
-  ];
-  const childLinkKampus = [
-    "/dashboard/data-kampus",
-    // the rest child link kampus
-  ];
-
+  const rootNav = "/dashboard";
   const navLinkProdi = [
     {
       name: "Prodi",
@@ -76,12 +62,26 @@ export default function SideBar() {
       path: "/dashboard/data-kampus",
     },
   ];
+  const childLinkProdi = [
+    "/dashboard/prodi",
+    "/dashboard/bidang-studi",
+    "/dashboard/kategori-skill",
+    "/dashboard/skill",
+    "/dashboard/kategori-kelebihan",
+    "/dashboard/kelebihan",
+    "/dashboard/kategori-kampus",
+    "/dashboard/kampus-terkait",
+  ];
+  const childLinkKampus = [
+    "/dashboard/data-kampus",
+    // the rest child link kampus
+  ];
   //state
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isOpenDashBoardMenu, setOpenDashBoardMenu] = useState(false);
   const [isDropdonwKampusOpen, setIsDropdonwKampusOpen] = useState(false);
   const [isMobile, setMobile] = useState(false);
-  //use ulits
+  //use ulits function
   const { setTheme } = useTheme();
   const sidebarRef = useRef<HTMLDivElement>(null);
   const router = usePathname();
@@ -153,7 +153,7 @@ export default function SideBar() {
         >
           <div className="p-4 flex flex-row justify-between">
             <div>
-              <Link href={"/dashboard"}>DASHBOARD</Link>
+              <Link href={rootNav}>DASHBOARD</Link>
             </div>
             <button onClick={toggleMobileMenu}>
               <X />
@@ -235,7 +235,7 @@ export default function SideBar() {
             }`}
           >
             <div className={`${isOpenDashBoardMenu ? "hidden" : ""}`}>
-              <Link href={"/dashboard"}>DASHBOARD</Link>
+              <Link href={rootNav}>DASHBOARD</Link>
             </div>
             <div>
               <TooltipProvider>
