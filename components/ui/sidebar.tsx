@@ -6,7 +6,7 @@ import { LogOut } from "lucide-react";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Menu, SquareChevronLeft, CircleX, ChevronDown } from "lucide-react";
+import { Menu, SquareChevronLeft, CircleX, ChevronDown, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
@@ -66,14 +66,14 @@ export default function SideBar() {
   return (
     <>
       {isMobile && (
-        <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
+        <div className="fixed inset-0 bg-black opacity-50 z-40 transition-opacity duration-300 ease-in-out"></div>
       )}
-      <div className="block md:hidden ">
+      <div className="block md:hidden">
         <nav>
           <div className="flex flex-row justify-between p-4 items-center">
             <div>
-              <button>
-                <Menu onClick={toggleMobileMenu} size={24} />
+              <button onClick={toggleMobileMenu}>
+                <Menu size={24} />
               </button>
             </div>
             <div>
@@ -84,109 +84,113 @@ export default function SideBar() {
             </div>
           </div>
         </nav>
-        {isMobile && (
-          <div ref={sidebarRef}>
-            <div className="h-full bg-white dark:bg-black z-50 fixed  flex flex-col w-64 space-y-4 top-0 left-0 transition-all ">
-              <div className="p-4 flex flex-row justify-end">
-                <button>
-                  <CircleX onClick={toggleMobileMenu} />
-                </button>
-              </div>
-              <div className="mt-2 space-y-2 mx-2 overflow-auto">
-                <div className="relative space-y-2">
-                  <button
-                    onClick={toggleDropdown}
-                    className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  hover:bg-gray-200 dark:hover:text-black"
+        <div
+          ref={sidebarRef}
+          className={`fixed inset-y-0 left-0 w-64 bg-white dark:bg-black z-50 flex flex-col space-y-4 top-0 transform transition-transform duration-300 ease-in-out ${
+            isMobile ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div className="p-4 flex flex-row justify-between">
+            <div>DASHBOARD</div>
+            <button onClick={toggleMobileMenu}>
+              <X />
+            </button>
+          </div>
+          <div className="space-y-2 mx-2 overflow-auto">
+            <div className="relative space-y-2">
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm hover:bg-gray-200 dark:hover:text-black"
+              >
+                <span>Prodi</span>
+                <ChevronDown
+                  className={`transition-transform ${
+                    isDropdownOpen ? "transform rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {isDropdownOpen && (
+                <div className="mt-2 space-y-2 mx-2">
+                  <Link
+                    href="/dashboard/prodi"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
                   >
-                    <span>Prodi</span>
-                    <ChevronDown
-                      className={`transition-transform ${
-                        isDropdownOpen ? "transform rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {isDropdownOpen && (
-                    <div className="mt-2 space-y-2 mx-2">
-                      <Link
-                        href="/dashboard/prodi"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Prodi
-                      </Link>
-                      <Link
-                        href="/dashboard/bidang-studi"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Bidang Studi
-                      </Link>
-                      <Link
-                        href="/dashboard/kategori-skill"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Kategori Skill
-                      </Link>
-                      <Link
-                        href="/dashboard/skill"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Skills
-                      </Link>
-                      <Link
-                        href="/dashboard/kategori-kelebihan"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Kategori Kelebihan Prodi
-                      </Link>
-                      <Link
-                        href="/dashboard/kelebihan"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Kelebihan
-                      </Link>
-                      <Link
-                        href="/dashboard/kategori-kampus"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Kategori Kampus
-                      </Link>
-                      <Link
-                        href="/dashboard/kampus-terkait"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Kampus Terkait
-                      </Link>
-                    </div>
-                  )}
-                  <button
-                    onClick={toggleDropdownKampus}
-                    className="flex items-center justify-between w-full px-4 py-2 text-left  rounded-sm  hover:bg-gray-200 dark:hover:text-black"
+                    Data Prodi
+                  </Link>
+                  <Link
+                    href="/dashboard/bidang-studi"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
                   >
-                    <span>Kampus</span>
-                    <ChevronDown
-                      className={`transition-transform ${
-                        isDropdonwKampusOpen ? "transform rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {isDropdonwKampusOpen && (
-                    <div className="mt-2 space-y-2 mx-2">
-                      <Link
-                        href="/data-bidang-studi"
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
-                      >
-                        Data Kampus
-                      </Link>
-                    </div>
-                  )}
+                    Data Bidang Studi
+                  </Link>
+                  <Link
+                    href="/dashboard/kategori-skill"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Kategori Skill
+                  </Link>
+                  <Link
+                    href="/dashboard/skill"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Skills
+                  </Link>
+                  <Link
+                    href="/dashboard/kategori-kelebihan"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Kategori Kelebihan Prodi
+                  </Link>
+                  <Link
+                    href="/dashboard/kelebihan"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Kelebihan
+                  </Link>
+                  <Link
+                    href="/dashboard/kategori-kampus"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Kategori Kampus
+                  </Link>
+                  <Link
+                    href="/dashboard/kampus-terkait"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Kampus Terkait
+                  </Link>
                 </div>
-              </div>
+              )}
+              <button
+                onClick={toggleDropdownKampus}
+                className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm hover:bg-gray-200 dark:hover:text-black"
+              >
+                <span>Kampus</span>
+                <ChevronDown
+                  className={`transition-transform ${
+                    isDropdonwKampusOpen ? "transform rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {isDropdonwKampusOpen && (
+                <div className="mt-2 space-y-2 mx-2">
+                  <Link
+                    href="/data-bidang-studi"
+                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                  >
+                    Data Kampus
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
-        )}
+        </div>
       </div>
       <aside
-        className={` hidden md:h-screen md:flex md:flex-col ${
-          isOpenDashBoardMenu ? "w-16" : "w-64"
+        className={` hidden md:h-screen md:flex md:flex-col transition-all ${
+          isOpenDashBoardMenu
+            ? "w-16 ease-in-out duration-300"
+            : "w-64 ease-in-out duration-300"
         } space-y-6 py-4 px-4 sticky top-0 border-r`}
       >
         <div className={`${isOpenDashBoardMenu ? "p-0" : "px-4"}`}>
