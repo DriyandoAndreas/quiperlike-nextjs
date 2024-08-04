@@ -2,7 +2,7 @@ import FormBidangStudi from "./component/formadd";
 import  ListData from "./component/listdata";
 export default function BidangStudi() {
   return (
-    <div className="p-5">
+    <>
       <div className="flex justify-between">
         <div className="flex items-center">Data Bidang Studi</div>
         <div>
@@ -12,6 +12,6 @@ export default function BidangStudi() {
       <div className="py-5">
           <ListData/>
       </div>
-    </div>
+    </>
   );
 }

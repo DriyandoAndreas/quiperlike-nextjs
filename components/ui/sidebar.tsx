@@ -29,9 +29,10 @@ export default function SideBar() {
   const [isOpenDashBoardMenu, setOpenDashBoardMenu] = useState(false);
   const [isDropdonwKampusOpen, setIsDropdonwKampusOpen] = useState(false);
   const [isMobile, setMobile] = useState(false);
+  //use ulits
   const { setTheme } = useTheme();
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const router = usePathname(); // Use router here
+  const router = usePathname();
   //button handler
   const toggleDashboardMenu = () => {
     setOpenDashBoardMenu(!isOpenDashBoardMenu);
@@ -53,6 +54,13 @@ export default function SideBar() {
       setMobile(false);
     }
   };
+  const getLinkClasses = (path: string) =>
+    router === path
+      ? "text-black dark:text-white underline underline-offset-2"
+      : "text-gray-500 hover:text-black dark:hover:text-white";
+  const isParentActive = (paths: Array<String>) => {
+    return paths.includes(router) ? "bg-gray-200 dark:text-black" : "";
+  };
   //side effect
   useEffect(() => {
     if (isMobile) {
@@ -64,13 +72,6 @@ export default function SideBar() {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [isMobile]);
-  const getLinkClasses = (path: string) =>
-    router === path
-      ? "text-black dark:text-white underline underline-offset-2"
-      : "text-gray-500 hover:text-black dark:hover:text-white";
-  const isParentActive = (paths: Array<String>) => {
-    return paths.includes(router) ? "bg-gray-200 dark:text-black" : "";
-  };
   return (
     // TODO: active class belum di konfigurasi
     <>
