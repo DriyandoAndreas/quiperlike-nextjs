@@ -178,6 +178,7 @@ export default function SideBar() {
                 navLinkProdi.map((link, index) => {
                   return (
                     <Link
+                      onClick={toggleMobileMenu}
                       key={index}
                       href={link.path}
                       className={`block px-4 py-2 text-sm ${getLinkClasses(
@@ -205,6 +206,7 @@ export default function SideBar() {
                 navLinkKampus.map((link, index) => {
                   return (
                     <Link
+                      onClick={toggleMobileMenu}
                       key={index}
                       href={link.path}
                       className={`block px-4 py-2 text-sm ${getLinkClasses(
