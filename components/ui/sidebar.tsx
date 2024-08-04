@@ -24,35 +24,56 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function SideBar() {
-  //data 
+  //data
+  const childLinkProdi = [
+    "/dashboard/prodi",
+    "/dashboard/bidang-studi",
+    "/dashboard/kategori-skill",
+    "/dashboard/skill",
+    "/dashboard/kategori-kelebihan",
+    "/dashboard/kelebihan",
+    "/dashboard/kategori-kampus",
+    "/dashboard/kampus-terkait",
+  ];
+  const childLinkKampus = [
+    "/dashboard/data-kampus",
+    // the rest child link kampus
+  ];
+
   const navLinkProdi = [
     {
-      name: "prodi",
+      name: "Prodi",
       path: "/dashboard/prodi",
     },
     {
-      name: "bidang-studi",
+      name: "Bidang studi",
       path: "/dashboard/bidang-studi",
     },
     {
-      name: "kategori-skill",
+      name: "Kategori skill",
       path: "/dashboard/kategori-skill",
     },
     {
-      name: "kategori-kelebihan",
+      name: "Kategori kelebihan",
       path: "/dashboard/kategori-kelebihan",
     },
     {
-      name: "kelebihan",
+      name: "Kelebihan",
       path: "/dashboard/kelebihan",
     },
     {
-      name: "kategori-kampus",
+      name: "Ktegori kampus",
       path: "/dashboard/kategori-kampus",
     },
     {
-      name: "kampus-terkait",
+      name: "Kampus terkait",
       path: "/dashboard/kampus-terkait",
+    },
+  ];
+  const navLinkKampus = [
+    {
+      name: "Data kampus",
+      path: "/dashboard/data-kampus",
     },
   ];
   //state
@@ -104,7 +125,6 @@ export default function SideBar() {
     };
   }, [isMobile]);
   return (
-    // TODO: active class belum di konfigurasi
     <>
       {isMobile && (
         <div className="fixed inset-0 bg-black opacity-50 z-40 transition-opacity duration-300 ease-in-out"></div>
@@ -144,16 +164,7 @@ export default function SideBar() {
               <button
                 onClick={toggleDropdown}
                 className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
-                  [
-                    "/dashboard/prodi",
-                    "/dashboard/bidang-studi",
-                    "/dashboard/kategori-skill",
-                    "/dashboard/skill",
-                    "/dashboard/kategori-kelebihan",
-                    "/dashboard/kelebihan",
-                    "/dashboard/kategori-kampus",
-                    "/dashboard/kampus-terkait",
-                  ]
+                  childLinkProdi
                 )} `}
               >
                 <span>Prodi</span>
@@ -180,7 +191,7 @@ export default function SideBar() {
               <button
                 onClick={toggleDropdownKampus}
                 className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
-                  ["/dashboard/data-kampus"]
+                  childLinkKampus
                 )}`}
               >
                 <span>Kampus</span>
@@ -190,18 +201,20 @@ export default function SideBar() {
                   }`}
                 />
               </button>
-              {isDropdonwKampusOpen && (
-                <div className="mt-2 space-y-2 mx-2">
-                  <Link
-                    href="/dashboard/data-kampus"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/data-kampus"
-                    )}`}
-                  >
-                    Data Kampus
-                  </Link>
-                </div>
-              )}
+              {isDropdonwKampusOpen &&
+                navLinkKampus.map((link, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={link.path}
+                      className={`block px-4 py-2 text-sm ${getLinkClasses(
+                        `${link.path}`
+                      )}`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -256,16 +269,7 @@ export default function SideBar() {
               <button
                 onClick={toggleDropdown}
                 className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
-                  [
-                    "/dashboard/prodi",
-                    "/dashboard/bidang-studi",
-                    "/dashboard/kategori-skill",
-                    "/dashboard/skill",
-                    "/dashboard/kategori-kelebihan",
-                    "/dashboard/kelebihan",
-                    "/dashboard/kategori-kampus",
-                    "/dashboard/kampus-terkait",
-                  ]
+                  childLinkProdi
                 )}`}
               >
                 <span>Prodi</span>
@@ -292,7 +296,7 @@ export default function SideBar() {
               <button
                 onClick={toggleDropdownKampus}
                 className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
-                  ["/dashboard/data-kampus"]
+                  childLinkKampus
                 )}`}
               >
                 <span>Kampus</span>
@@ -302,18 +306,20 @@ export default function SideBar() {
                   }`}
                 />
               </button>
-              {isDropdonwKampusOpen && (
-                <div className="mt-2 space-y-2 mx-2">
-                  <Link
-                    href="/dashboard/data-kampus"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/data-kampus"
-                    )}`}
-                  >
-                    Data Kampus
-                  </Link>
-                </div>
-              )}
+              {isDropdonwKampusOpen &&
+                navLinkKampus.map((link, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={link.path}
+                      className={`block px-4 py-2 text-sm ${getLinkClasses(
+                        `${link.path}`
+                      )}`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
             </div>
           </div>
         </nav>
