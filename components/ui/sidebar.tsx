@@ -24,6 +24,37 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function SideBar() {
+  //data 
+  const navLinkProdi = [
+    {
+      name: "prodi",
+      path: "/dashboard/prodi",
+    },
+    {
+      name: "bidang-studi",
+      path: "/dashboard/bidang-studi",
+    },
+    {
+      name: "kategori-skill",
+      path: "/dashboard/kategori-skill",
+    },
+    {
+      name: "kategori-kelebihan",
+      path: "/dashboard/kategori-kelebihan",
+    },
+    {
+      name: "kelebihan",
+      path: "/dashboard/kelebihan",
+    },
+    {
+      name: "kategori-kampus",
+      path: "/dashboard/kategori-kampus",
+    },
+    {
+      name: "kampus-terkait",
+      path: "/dashboard/kampus-terkait",
+    },
+  ];
   //state
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isOpenDashBoardMenu, setOpenDashBoardMenu] = useState(false);
@@ -132,74 +163,20 @@ export default function SideBar() {
                   }`}
                 />
               </button>
-              {isDropdownOpen && (
-                <div className="mt-2 space-y-2 mx-2">
-                  <Link
-                    href="/dashboard/prodi"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/prodi"
-                    )}`}
-                  >
-                    Data Prodi
-                  </Link>
-                  <Link
-                    href="/dashboard/bidang-studi"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/bidang-studi"
-                    )}`}
-                  >
-                    Data Bidang Studi
-                  </Link>
-                  <Link
-                    href="/dashboard/kategori-skill"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kategori-skill"
-                    )}`}
-                  >
-                    Data Kategori Skill
-                  </Link>
-                  <Link
-                    href="/dashboard/skill"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/skill"
-                    )}`}
-                  >
-                    Data Skills
-                  </Link>
-                  <Link
-                    href="/dashboard/kategori-kelebihan"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kategori-kelebihan"
-                    )}`}
-                  >
-                    Data Kategori Kelebihan Prodi
-                  </Link>
-                  <Link
-                    href="/dashboard/kelebihan"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kelebihan"
-                    )}`}
-                  >
-                    Data Kelebihan
-                  </Link>
-                  <Link
-                    href="/dashboard/kategori-kampus"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kategori-kampus"
-                    )}`}
-                  >
-                    Data Kategori Kampus
-                  </Link>
-                  <Link
-                    href="/dashboard/kampus-terkait"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kampus-terkait"
-                    )}`}
-                  >
-                    Data Kampus Terkait
-                  </Link>
-                </div>
-              )}
+              {isDropdownOpen &&
+                navLinkProdi.map((link, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={link.path}
+                      className={`block px-4 py-2 text-sm ${getLinkClasses(
+                        `${link.path}`
+                      )}`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
               <button
                 onClick={toggleDropdownKampus}
                 className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
@@ -298,74 +275,20 @@ export default function SideBar() {
                   }`}
                 />
               </button>
-              {isDropdownOpen && (
-                <div className="mt-2 space-y-2 mx-2">
-                  <Link
-                    href="/dashboard/prodi"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/prodi"
-                    )}`}
-                  >
-                    Data Prodi
-                  </Link>
-                  <Link
-                    href="/dashboard/bidang-studi"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/bidang-studi"
-                    )}`}
-                  >
-                    Data Bidang Studi
-                  </Link>
-                  <Link
-                    href="/dashboard/kategori-skill"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kategori-skill"
-                    )}`}
-                  >
-                    Data Kategori Skill
-                  </Link>
-                  <Link
-                    href="/dashboard/skill"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/skill"
-                    )}`}
-                  >
-                    Data Skills
-                  </Link>
-                  <Link
-                    href="/dashboard/kategori-kelebihan"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kategori-kelebihan"
-                    )}`}
-                  >
-                    Data Kategori Kelebihan Prodi
-                  </Link>
-                  <Link
-                    href="/dashboard/kelebihan"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kelebihan"
-                    )}`}
-                  >
-                    Data Kelebihan
-                  </Link>
-                  <Link
-                    href="/dashboard/kategori-kampus"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kategori-kampus"
-                    )}`}
-                  >
-                    Data Kategori Kampus
-                  </Link>
-                  <Link
-                    href="/dashboard/kampus-terkait"
-                    className={`block px-4 py-2 text-sm ${getLinkClasses(
-                      "/dashboard/kampus-terkait"
-                    )}`}
-                  >
-                    Data Kampus Terkait
-                  </Link>
-                </div>
-              )}
+              {isDropdownOpen &&
+                navLinkProdi.map((link, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={link.path}
+                      className={`block px-4 py-2 text-sm ${getLinkClasses(
+                        `${link.path}`
+                      )}`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
               <button
                 onClick={toggleDropdownKampus}
                 className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
