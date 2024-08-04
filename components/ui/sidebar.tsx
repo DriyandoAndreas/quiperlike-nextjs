@@ -8,7 +8,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Menu, SquareChevronLeft, ChevronDown, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import { usePathname } from "next/navigation";
 import {
   Tooltip,
   TooltipContent,
@@ -31,6 +31,7 @@ export default function SideBar() {
   const [isMobile, setMobile] = useState(false);
   const { setTheme } = useTheme();
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const router = usePathname(); // Use router here
   //button handler
   const toggleDashboardMenu = () => {
     setOpenDashBoardMenu(!isOpenDashBoardMenu);
@@ -52,7 +53,7 @@ export default function SideBar() {
       setMobile(false);
     }
   };
-  //effect note: belum paham kegunaannya, find out later
+  //side effect
   useEffect(() => {
     if (isMobile) {
       document.addEventListener("click", handleClickOutside, true);
@@ -63,6 +64,13 @@ export default function SideBar() {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [isMobile]);
+  const getLinkClasses = (path: string) =>
+    router === path
+      ? "text-black underline underline-offset-2"
+      : "text-gray-500 hover:text-black dark:hover:text-white";
+  const isParentActive = (paths: Array<String>) => {
+    return paths.includes(router) ? "bg-gray-200" : "";
+  };
   return (
     // TODO: active class belum di konfigurasi
     <>
@@ -92,7 +100,9 @@ export default function SideBar() {
           }`}
         >
           <div className="p-4 flex flex-row justify-between">
-            <div>DASHBOARD</div>
+            <div>
+              <Link href={"/dashboard"}>DASHBOARD</Link>
+            </div>
             <button onClick={toggleMobileMenu}>
               <X />
             </button>
@@ -101,7 +111,18 @@ export default function SideBar() {
             <div className="relative space-y-2">
               <button
                 onClick={toggleDropdown}
-                className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm hover:bg-gray-200 dark:hover:text-black"
+                className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
+                  [
+                    "/dashboard/prodi",
+                    "/dashboard/bidang-studi",
+                    "/dashboard/kategori-skill",
+                    "/dashboard/skill",
+                    "/dashboard/kategori-kelebihan",
+                    "/dashboard/kelebihan",
+                    "/dashboard/kategori-kampus",
+                    "/dashboard/kampus-terkait",
+                  ]
+                )} `}
               >
                 <span>Prodi</span>
                 <ChevronDown
@@ -114,49 +135,65 @@ export default function SideBar() {
                 <div className="mt-2 space-y-2 mx-2">
                   <Link
                     href="/dashboard/prodi"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/prodi"
+                    )}`}
                   >
                     Data Prodi
                   </Link>
                   <Link
                     href="/dashboard/bidang-studi"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/bidang-studi"
+                    )}`}
                   >
                     Data Bidang Studi
                   </Link>
                   <Link
                     href="/dashboard/kategori-skill"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kategori-skill"
+                    )}`}
                   >
                     Data Kategori Skill
                   </Link>
                   <Link
                     href="/dashboard/skill"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/skill"
+                    )}`}
                   >
                     Data Skills
                   </Link>
                   <Link
                     href="/dashboard/kategori-kelebihan"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kategori-kelebihan"
+                    )}`}
                   >
                     Data Kategori Kelebihan Prodi
                   </Link>
                   <Link
                     href="/dashboard/kelebihan"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kelebihan"
+                    )}`}
                   >
                     Data Kelebihan
                   </Link>
                   <Link
                     href="/dashboard/kategori-kampus"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kategori-kampus"
+                    )}`}
                   >
                     Data Kategori Kampus
                   </Link>
                   <Link
                     href="/dashboard/kampus-terkait"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kampus-terkait"
+                    )}`}
                   >
                     Data Kampus Terkait
                   </Link>
@@ -164,7 +201,9 @@ export default function SideBar() {
               )}
               <button
                 onClick={toggleDropdownKampus}
-                className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm hover:bg-gray-200 dark:hover:text-black"
+                className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
+                  ["/dashboard/data-kampus"]
+                )}`}
               >
                 <span>Kampus</span>
                 <ChevronDown
@@ -176,7 +215,7 @@ export default function SideBar() {
               {isDropdonwKampusOpen && (
                 <div className="mt-2 space-y-2 mx-2">
                   <Link
-                    href="/data-bidang-studi"
+                    href="/dashboard/data-kampus"
                     className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
                   >
                     Data Kampus
@@ -203,7 +242,7 @@ export default function SideBar() {
             }`}
           >
             <div className={`${isOpenDashBoardMenu ? "hidden" : ""}`}>
-              DASHBOARD
+              <Link href={"/dashboard"}>DASHBOARD</Link>
             </div>
             <div>
               <TooltipProvider>
@@ -236,7 +275,18 @@ export default function SideBar() {
             <div className="relative space-y-2">
               <button
                 onClick={toggleDropdown}
-                className="flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  hover:bg-gray-200 dark:hover:text-black"
+                className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
+                  [
+                    "/dashboard/prodi",
+                    "/dashboard/bidang-studi",
+                    "/dashboard/kategori-skill",
+                    "/dashboard/skill",
+                    "/dashboard/kategori-kelebihan",
+                    "/dashboard/kelebihan",
+                    "/dashboard/kategori-kampus",
+                    "/dashboard/kampus-terkait",
+                  ]
+                )}`}
               >
                 <span>Prodi</span>
                 <ChevronDown
@@ -249,49 +299,65 @@ export default function SideBar() {
                 <div className="mt-2 space-y-2 mx-2">
                   <Link
                     href="/dashboard/prodi"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/prodi"
+                    )}`}
                   >
                     Data Prodi
                   </Link>
                   <Link
                     href="/dashboard/bidang-studi"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/bidang-studi"
+                    )}`}
                   >
                     Data Bidang Studi
                   </Link>
                   <Link
                     href="/dashboard/kategori-skill"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kategori-skill"
+                    )}`}
                   >
                     Data Kategori Skill
                   </Link>
                   <Link
                     href="/dashboard/skill"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/skill"
+                    )}`}
                   >
                     Data Skills
                   </Link>
                   <Link
                     href="/dashboard/kategori-kelebihan"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kategori-kelebihan"
+                    )}`}
                   >
                     Data Kategori Kelebihan Prodi
                   </Link>
                   <Link
                     href="/dashboard/kelebihan"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kelebihan"
+                    )}`}
                   >
                     Data Kelebihan
                   </Link>
                   <Link
                     href="/dashboard/kategori-kampus"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kategori-kampus"
+                    )}`}
                   >
                     Data Kategori Kampus
                   </Link>
                   <Link
                     href="/dashboard/kampus-terkait"
-                    className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
+                    className={`block px-4 py-2 text-sm ${getLinkClasses(
+                      "/dashboard/kampus-terkait"
+                    )}`}
                   >
                     Data Kampus Terkait
                   </Link>
@@ -299,7 +365,9 @@ export default function SideBar() {
               )}
               <button
                 onClick={toggleDropdownKampus}
-                className="flex items-center justify-between w-full px-4 py-2 text-left  rounded-sm  hover:bg-gray-200 dark:hover:text-black"
+                className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
+                  ["/dashboard/data-kampus"]
+                )}`}
               >
                 <span>Kampus</span>
                 <ChevronDown
@@ -311,7 +379,7 @@ export default function SideBar() {
               {isDropdonwKampusOpen && (
                 <div className="mt-2 space-y-2 mx-2">
                   <Link
-                    href="/data-bidang-studi"
+                    href="/dashboard/data-kampus"
                     className="block px-4 py-2 text-sm text-gray-500 hover:text-black dark:hover:text-white"
                   >
                     Data Kampus
