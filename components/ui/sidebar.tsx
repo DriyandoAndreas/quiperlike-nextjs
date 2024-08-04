@@ -6,7 +6,7 @@ import { LogOut } from "lucide-react";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Menu, SquareChevronLeft, CircleX, ChevronDown, X } from "lucide-react";
+import { Menu, SquareChevronLeft, ChevronDown, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
@@ -64,6 +64,7 @@ export default function SideBar() {
     };
   }, [isMobile]);
   return (
+    // TODO: active class belum di konfigurasi
     <>
       {isMobile && (
         <div className="fixed inset-0 bg-black opacity-50 z-40 transition-opacity duration-300 ease-in-out"></div>
