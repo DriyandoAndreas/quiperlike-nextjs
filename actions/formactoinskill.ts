@@ -12,75 +12,72 @@ export async function getSkillById(id:number) {
 //add
 export async function CreateSkill(formData: FormData) {
   try {
-    const namaSkill = formData.get("nama_bidang_studi") as string;
-    const deskripsiSkill = formData.get("deskripsi_bidang_studi") as string;
+    const namaSkill = formData.get("nama_kategori") as string;
 
-    await prisma.bidang_studi.create({
+    await prisma.kategori_skill_prodi.create({
       data: {
-        nama_bidang_studi: namaSkill,
-        deskripsi_bidang_studi: deskripsiSkill,
+        nama_kategori: namaSkill,
+        
       },
     });
-    revalidatePath("/dashboard/bidang-studi")
+    revalidatePath("/dashboard/kategori-skill")
     return {
       status: 200,
-      message: "Bidang studi berhasil ditambahkan",
+      message: "Kategori skill berhasil ditambahkan",
     };
   } catch (error) {
-    console.error("Error creating bidang studi:", error);
+    console.error("Error creating Kategori skill:", error);
     return {
       status: 500,
-      message: "Terjadi kesalahan saat menambahkan bidang studi",
+      message: "Terjadi kesalahan saat menambahkan Kategori skill",
     };
   }
 }
 //edit
-export async function EditBidangStudi(formData: FormData) {
+export async function EditSkill(formData: FormData) {
   try {
     const id = Number(formData.get("id"));
-    const namaSkill = formData.get("nama_bidang_studi") as string;
-    const deskripsiSkill = formData.get("deskripsi_bidang_studi") as string;
+    const namaSkill = formData.get("nama_skill") as string;
 
-    await prisma.bidang_studi.update({
+    await prisma.kategori_skill_prodi.update({
       where: {
-        bidang_studi_id : id,
+        kategori_skill_id : id,
       },
       data: {
-        nama_bidang_studi: namaSkill,
-        deskripsi_bidang_studi: deskripsiSkill,
+        nama_kategori: namaSkill,
       },
     });
-    revalidatePath("/dashboard/bidang-studi")
+    revalidatePath("/dashboard/kategori-skill")
     return {
       status: 200,
-      message: "Bidang studi berhasil ditambahkan",
+      message: "Kategori skill berhasil ditambahkan",
     };
   } catch (error) {
-    console.error("Error edit bidang studi:", error);
+    console.error("Error edit Kategori skill:", error);
     return {
       status: 500,
-      message: "Terjadi kesalahan saat edit bidang studi",
+      message: "Terjadi kesalahan saat edit Kategori skill",
     };
   }
 }
 //delete
-export async function DeleteBidangStudi(id:number) {
+export async function DeleteSkill(id:number) {
   try {
-    await prisma.bidang_studi.delete({
+    await prisma.kategori_skill_prodi.delete({
       where: {
-        bidang_studi_id : id,
+        kategori_skill_id : id,
       },
     });
-    revalidatePath("/dashboard/bidang-studi")
+    revalidatePath("/dashboard/kategori-skill")
     return {
       status: 200,
-      message: "Bidang studi berhasil dihapus",
+      message: "Kategori skill berhasil dihapus",
     };
   } catch (error) {
-    console.error("Error hapus bidang studi:", error);
+    console.error("Error hapus Kategori skill:", error);
     return {
       status: 500,
-      message: "Terjadi kesalahan saat hapus bidang studi",
+      message: "Terjadi kesalahan saat hapus Kategori skill",
     };
   }
 }

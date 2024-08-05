@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getBidangStudiById } from "@/actions/formaction";
+import { getBidangStudiById } from "@/actions/formactionbidangstudi";
 import { Button } from "@/components/ui/button";
-import { EditBidangStudi } from "@/actions/formaction";
+import { EditBidangStudi } from "@/actions/formactionbidangstudi";
 import { useToast } from "@/components/ui/use-toast";
 import { Pencil } from "lucide-react";
 import {

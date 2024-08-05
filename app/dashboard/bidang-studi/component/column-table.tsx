@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import FormEditBidangStudi from "./formedit";
 import { Button } from "@/components/ui/button";
-import { DeleteBidangStudi } from "@/actions/formaction";
+import { DeleteBidangStudi } from "@/actions/formactionbidangstudi";
 import {
   DropdownMenu,
   DropdownMenuContent,

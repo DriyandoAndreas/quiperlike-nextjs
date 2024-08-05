@@ -1,5 +1,5 @@
 "use client";
-import { CreateBidangStudi } from "@/actions/formaction";
+import { CreateBidangStudi } from "@/actions/formactionbidangstudi";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import {
