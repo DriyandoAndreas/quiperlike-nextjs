@@ -28,7 +28,7 @@ export default function SideBar() {
   const rootNav = "/dashboard";
   const navLinkProdi = [
     {
-      name: "Prodi",
+      name: "Data prodi",
       path: "/dashboard/prodi",
     },
     {
@@ -126,6 +126,7 @@ export default function SideBar() {
   }, [isMobile]);
   return (
     <>
+      {/* Mobile menu */}
       {isMobile && (
         <div className="fixed inset-0 bg-black opacity-50 z-40 transition-opacity duration-300 ease-in-out"></div>
       )}
@@ -221,6 +222,7 @@ export default function SideBar() {
           </div>
         </div>
       </div>
+      {/* Desktop menu */}
       <aside
         className={` hidden md:h-screen md:flex md:flex-col transition-all ${
           isOpenDashBoardMenu
