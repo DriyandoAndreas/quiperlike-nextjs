@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 // TODO: use zod for validation
-export default function FormBidangStudi() {
+export default function FormKategoriSkill() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { toast } = useToast();
   const openDialog = () => setIsDialogOpen(true);
