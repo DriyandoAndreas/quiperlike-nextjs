@@ -5,7 +5,7 @@ export default function Skills() {
   return (
     <>
       <div className="flex justify-between">
-        <div className="flex items-center">Data Bidang Studi</div>
+        <div className="flex items-center">Data Kategori Skill</div>
         <div>
           <FormKategoriSkill></FormKategoriSkill>
         </div>

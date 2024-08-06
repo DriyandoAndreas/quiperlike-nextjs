@@ -3,7 +3,7 @@ import { column } from "./column-table";
 import { DataTable } from "./data-table";
 
 export default async function ListData() {
-  const listData = await prisma.bidang_studi.findMany();
+  const listData = await prisma.kategori_skill_prodi.findMany();
   return (
     <>
       {/* TODO: pagegination 10 per halaman */}

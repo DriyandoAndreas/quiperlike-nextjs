@@ -12,33 +12,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 export type BidangStudi = {
-  bidang_studi_id: number;
-  nama_bidang_studi: string;
-  deskripsi_bidang_studi: string;
+  kategori_skill_id: number;
+  nama_kategori: string;
 };
 
 export const column: ColumnDef<BidangStudi>[] = [
   {
-    accessorKey: "bidang_studi_id",
+    accessorKey: "kategori_skill_id",
     header: "ID",
   },
   {
-    accessorKey: "nama_bidang_studi",
-    header: "Nama Bidang Studi",
+    accessorKey: "nama_kategori",
+    header: "Nama Kategori Skill",
   },
-  {
-    accessorKey: "deskripsi_bidang_studi",
-    header: "Deskripsi Bidang Studi",
-  },
+  
   {
     id: "actions",
 
     cell: ({ row }) => {
       const ListData = row.original;
 
-      const handleDelete = async () => {
-        await DeleteBidangStudi(ListData.bidang_studi_id);
-      };
+      // const handleDelete = async () => {
+      //   await DeleteBidangStudi(ListData.bidang_studi_id);
+      // };
 
       return (
         <DropdownMenu>

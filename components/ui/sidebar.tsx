@@ -37,7 +37,11 @@ export default function SideBar() {
     },
     {
       name: "Kategori skill",
-      path: "/dashboard/kategori-skill",
+      path: "/dashboard/skill",
+    },
+    {
+      name: "Skill",
+      path: "/dashboard/skill-konten",
     },
     {
       name: "Kategori kelebihan",
@@ -48,7 +52,7 @@ export default function SideBar() {
       path: "/dashboard/kelebihan",
     },
     {
-      name: "Ktegori kampus",
+      name: "Kategori kampus",
       path: "/dashboard/kategori-kampus",
     },
     {
