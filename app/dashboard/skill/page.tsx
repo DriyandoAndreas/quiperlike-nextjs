@@ -1,4 +1,5 @@
-import React from 'react'
+import FormKategoriSkill from './component/formadd';
+import ListData from './component/listdata';
 
 export default function Skills() {
   return (
@@ -6,11 +7,11 @@ export default function Skills() {
       <div className="flex justify-between">
         <div className="flex items-center">Data Bidang Studi</div>
         <div>
-          {/* form add */}
+          <FormKategoriSkill></FormKategoriSkill>
         </div>
       </div>
       <div className="py-5">
-        {/* list data */}
+        <ListData />
       </div>
     </>
   );
