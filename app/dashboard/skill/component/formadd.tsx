@@ -1,5 +1,5 @@
 "use client";
-import { CreateBidangStudi } from "@/actions/formactionbidangstudi";
+import { CreateSkill } from "@/actions/formactoinskill";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import {
@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 // TODO: use zod for validation
@@ -27,7 +26,7 @@ export default function FormBidangStudi() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    // await CreateBidangStudi(formData);
+    await CreateSkill(formData);
     toast({ description: "Data berhasil ditambahkan" });
     closeDialog();
   };
@@ -44,28 +43,19 @@ export default function FormBidangStudi() {
             <DialogHeader className="py-2">
               <DialogTitle>Form Tambah Data Skill</DialogTitle>
               <DialogDescription>
-                Tambahkan nama skill dan deskripsi.
+                Tambahkan nama kategori skill. Kategori skill sesuai dengan
+                bidang studi
               </DialogDescription>
             </DialogHeader>
             <div className="flex items-center space-x-2 py-2">
               <div className="grid flex-1 gap-2">
-                <Label>Nama Skill</Label>
+                <Label>Nama Kategori Skill</Label>
                 <Input
-                  name="nama_skill"
-                  placeholder="Nama bidang studi"
+                  name="nama_kategori"
+                  placeholder="Nama Kategori"
                   type="text"
                   required
                 />
-              </div>
-            </div>
-            <div className="flex items-center space-x-2 py-2">
-              <div className="grid flex-1 gap-2">
-                <Label>Deskripsi Bidang Studi</Label>
-                <Textarea
-                  name="deskripsi_skill"
-                  placeholder="Deskripsikan skill"
-                  required
-                ></Textarea>
               </div>
             </div>
             <DialogFooter className="py-2 gap-2 md:gap-0 sm:justify-between">
