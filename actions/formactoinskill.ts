@@ -17,7 +17,6 @@ export async function CreateSkill(formData: FormData) {
     await prisma.kategori_skill_prodi.create({
       data: {
         nama_kategori: namaSkill,
-        
       },
     });
     revalidatePath("/dashboard/kategori-skill")
@@ -37,14 +36,14 @@ export async function CreateSkill(formData: FormData) {
 export async function EditSkill(formData: FormData) {
   try {
     const id = Number(formData.get("id"));
-    const namaSkill = formData.get("nama_skill") as string;
+    const namaKategoriSkill = formData.get("nama_kategori") as string;
 
     await prisma.kategori_skill_prodi.update({
       where: {
         kategori_skill_id : id,
       },
       data: {
-        nama_kategori: namaSkill,
+        nama_kategori: namaKategoriSkill,
       },
     });
     revalidatePath("/dashboard/kategori-skill")
