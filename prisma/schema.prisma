@@ -39,10 +39,10 @@ model prodi {
 
 // model bidang_studi
 model bidang_studi {
-  bidang_studi_id   Int     @id @default(autoincrement())
-  nama_bidang_studi String  @unique @db.VarChar(255)
-  deskripsi_bidang_studi String @db.LongText
-  prodi             prodi[]
+  bidang_studi_id        Int     @id @default(autoincrement())
+  nama_bidang_studi      String  @unique @db.VarChar(255)
+  deskripsi_bidang_studi String  @db.LongText
+  prodi                  prodi[]
 }
 
 // model kategori_skill_prodi
@@ -57,7 +57,7 @@ model kategori_skill_prodi {
 model kategori_skill_konten {
   kategori_skill_konten_id Int                  @id @default(autoincrement())
   judul_konten             String               @db.VarChar(255)
-  kategori_skill           String               @unique @db.VarChar(255) // fk
+  kategori_skill           String               @db.VarChar(255) // fk
   kategoriskill            kategori_skill_prodi @relation(fields: [kategori_skill], references: [nama_kategori])
 }
 
@@ -73,7 +73,7 @@ model kategori_alasan_memilih_prodi {
 model alasan_memilih_prodi_konten {
   alasan_memilih_prodi_id Int                           @id @default(autoincrement())
   isi_asalasan            String                        @db.LongText
-  kategori_asalasan       String                        @unique @db.VarChar(255)
+  kategori_asalasan       String                        @db.VarChar(255)
   alasanmemilih           kategori_alasan_memilih_prodi @relation(fields: [kategori_asalasan], references: [nama_kategori])
 }
 
@@ -91,7 +91,7 @@ model kampus_terkait {
   nama_kampus       String          @db.VarChar(255)
   status_kampus     String          @db.VarChar(255)
   url_kampus        String          @db.VarChar(255)
-  kategori_kampus   String          @unique
+  kategori_kampus   String          @db.VarChar(255)
   kategorikampus    kategori_kampus @relation(fields: [kategori_kampus], references: [nama_kategori])
 }
 
@@ -101,4 +101,5 @@ model kampus {
   nama_kampus    String @db.VarChar(255)
   status_kampus  String @db.VarChar(255)
   url_web_kampus String @db.LongText
+  lokasi_kampus  String @db.VarChar(255)
 }

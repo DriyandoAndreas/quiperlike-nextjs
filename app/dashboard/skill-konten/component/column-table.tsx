@@ -4,25 +4,29 @@ import { MoreHorizontal } from "lucide-react";
 import FormEditKategoriSkill from "./formedit";
 import DeleteForm from "./formdelete";
 import { Button } from "@/components/ui/button";
-import { DeleteSkill } from "@/actions/formactoinskill";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-export type KategoriSKill = {
-  kategori_skill_id: number;
-  nama_kategori: string;
+export type KategoriSKillKonten = {
+  kategori_skill_konten_id: number;
+  judul_konten : string,
+  kategori_skill: string;
 };
 
-export const column: ColumnDef<KategoriSKill>[] = [
+export const column: ColumnDef<KategoriSKillKonten>[] = [
   {
-    accessorKey: "kategori_skill_id",
+    accessorKey: "kategori_skill_konten_id",
     header: "ID",
   },
   {
-    accessorKey: "nama_kategori",
+    accessorKey: "judul_konten",
+    header: "Judul",
+  },
+  {
+    accessorKey: "kategori_skill",
     header: "Nama Kategori Skill",
   },
 
@@ -31,10 +35,6 @@ export const column: ColumnDef<KategoriSKill>[] = [
 
     cell: ({ row }) => {
       const ListData = row.original;
-
-      const handleDelete = async () => {
-        await DeleteSkill(ListData.kategori_skill_id);
-      };
 
       return (
         <DropdownMenu>
@@ -49,10 +49,10 @@ export const column: ColumnDef<KategoriSKill>[] = [
               Actions
             </DropdownMenuLabel>
             <div className="py-2 text-center">
-              <FormEditKategoriSkill id={ListData.kategori_skill_id} />
+              <FormEditKategoriSkill id={ListData.kategori_skill_konten_id} />
             </div>
             <div className="py-2 text-center">
-              <DeleteForm id={ListData.kategori_skill_id} />
+              <DeleteForm id={ListData.kategori_skill_konten_id} />
             </div>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -14,11 +14,12 @@ export async function CreateSkill(formData: FormData) {
   try {
     const namaSkill = formData.get("nama_kategori") as string;
 
-    await prisma.kategori_skill_prodi.create({
+   const data =  await prisma.kategori_skill_prodi.create({
       data: {
         nama_kategori: namaSkill,
       },
     });
+    console.log(data);
     revalidatePath("/dashboard/kategori-skill")
     return {
       status: 200,
