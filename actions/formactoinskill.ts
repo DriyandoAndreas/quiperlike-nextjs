@@ -19,7 +19,6 @@ export async function CreateSkill(formData: FormData) {
         nama_kategori: namaSkill,
       },
     });
-    console.log(data);
     revalidatePath("/dashboard/kategori-skill")
     return {
       status: 200,

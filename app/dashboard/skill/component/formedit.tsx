@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getBidangStudiById } from "@/actions/formactionbidangstudi";
 import { Button } from "@/components/ui/button";
 import { EditSkill, getSkillById } from "@/actions/formactoinskill";
 import { useToast } from "@/components/ui/use-toast";
@@ -17,12 +16,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 //TODO: use zod for validation
 type FormEditKategoriSkillProps = {
   id: number;
 };
-export default function FormEditKategoriSkill({ id }: FormEditKategoriSkillProps) {
+export default function FormEditKategoriSkill({
+  id,
+}: FormEditKategoriSkillProps) {
   const [data, setData] = useState({
     nama_kategori: "",
   });

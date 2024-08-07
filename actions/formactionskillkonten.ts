@@ -39,8 +39,6 @@ export async function CreateSkillKonten(formData: FormData) {
     };
   }
 }
-
-
 //edit
 export async function EditSkillKonten(formData: FormData) {
   try {
