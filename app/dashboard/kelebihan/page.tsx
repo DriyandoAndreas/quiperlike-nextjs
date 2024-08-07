@@ -4,7 +4,7 @@ export default function Kelebihan() {
   return (
     <>
       <div className="flex justify-between">
-        <div className="flex items-center">Data Skill Konten</div>
+        <div className="flex items-center">Data Kampus Terkait</div>
         <div>
           <FormAddData></FormAddData>
         </div>
