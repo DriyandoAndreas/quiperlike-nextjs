@@ -69,7 +69,7 @@ export default function SideBar() {
   const childLinkProdi = [
     "/dashboard/prodi",
     "/dashboard/bidang-studi",
-    "/dashboard/kategori-skill",
+    "/dashboard/skill-konten",
     "/dashboard/skill",
     "/dashboard/kategori-kelebihan",
     "/dashboard/kelebihan",
