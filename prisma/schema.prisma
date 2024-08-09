@@ -55,20 +55,20 @@ model kategori_skill_konten {
   kategori_skill_konten_id Int                    @id @default(autoincrement())
   judul_konten             String                 @db.VarChar(255)
   kategori_skill           String
-  kategoriskill            kategori_skill_prodi[] // many to one
+  kategoriskill            kategori_skill_prodi[] 
 }
 
 model kategori_alasan_memilih_prodi {
   kategori_alasan_id Int                           @id @default(autoincrement())
   nama_kategori      String                        @db.VarChar(255)
   kategorialasan     prodi[]
-  alasanmemilih      alasan_memilih_prodi_konten[]
+  alasanmemilihkonten     alasan_memilih_prodi_konten[]
 }
 
 model alasan_memilih_prodi_konten {
   alasan_memilih_prodi_id Int                             @id @default(autoincrement())
   isi_asalasan            String                          @db.LongText
-  kategori_asalasan       String // References `nama_kategori`
+  kategori_asalasan       String 
   alasanmemilih           kategori_alasan_memilih_prodi[]
 }
 

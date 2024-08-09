@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Delete } from "@/actions/formactionkelebihan";
+import { Delete } from "@/actions/formactionprodi";
 import { Trash2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {

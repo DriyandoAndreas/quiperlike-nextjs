@@ -3,6 +3,12 @@
 import prisma from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 //get
+export async function getAll(id:number) {
+  const skill = await prisma.prodi.findFirst({
+    where: { prodi_id: id },
+  });
+  return skill;
+}
 export async function getBidangStudi() {
   const skill = await prisma.bidang_studi.findMany();
   return skill;
