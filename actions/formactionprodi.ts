@@ -1,0 +1,116 @@
+'use server';
+
+import prisma from "@/lib/prismadb";
+import { revalidatePath } from "next/cache";
+//get
+export async function getBidangStudi() {
+  const skill = await prisma.bidang_studi.findMany();
+  return skill;
+}
+export async function getSkill() {
+  const skill = await prisma.kategori_skill_prodi.findMany();
+  return skill;
+}
+export async function getAlasan() {
+  const skill = await prisma.kategori_alasan_memilih_prodi.findMany();
+  return skill;
+}
+export async function getKampus() {
+  const skill = await prisma.kategori_kampus.findMany();
+  return skill;
+}
+//add
+export async function Create(formData: FormData) {
+  try {
+    const namaprodi = formData.get("nama_prodi") as string;
+    const deskripsiprodi = formData.get("deskripsi_prodi") as string;
+    const prospekkerja = formData.get("prospek_kerja_prodi") as string;
+    const bidangstudi = formData.get("bidang_studi") as string;
+    const kategoriskill = formData.get("kategori_skill") as string;
+    const kategorialasan = formData.get("kategori_alasan") as string;
+    const kategorikampus = formData.get("kategori_kampus") as string;
+
+   await prisma.prodi.create({
+      data: {
+        nama_prodi: namaprodi,
+        deskripsi_prodi: deskripsiprodi,
+        prospek_kerja_prodi: prospekkerja,
+        bidang_studi: bidangstudi,
+        kategori_skill: kategoriskill,
+        kategori_alasan: kategorialasan,
+        kategori_kampus: kategorikampus,
+      },
+    });
+    revalidatePath("/dashboard/prodi")
+    return {
+      status: 200,
+      message: "Kategori skill berhasil ditambahkan",
+    };
+  } catch (error) {
+    console.error("Error creating Kategori skill:", error);
+    return {
+      status: 500,
+      message: "Terjadi kesalahan saat menambahkan Kategori skill",
+    };
+  }
+}
+//edit
+export async function Edit(formData: FormData) {
+  try {
+    const id = Number(formData.get("id"));
+    const namaprodi = formData.get("nama_prodi") as string;
+    const deskripsiprodi = formData.get("deskripsi_prodi") as string;
+    const prospekkerja = formData.get("prospek_kerja_prodi") as string;
+    const bidangstudi = formData.get("bidang_studi") as string;
+    const kategoriskill = formData.get("kategori_skill") as string;
+    const kategorialasan = formData.get("kategori_alasan") as string;
+    const kategorikampus = formData.get("kategori_kampus") as string;
+
+    await prisma.prodi.update({
+      where: {
+        prodi_id : id,
+      },
+     data: {
+        nama_prodi: namaprodi,
+        deskripsi_prodi: deskripsiprodi,
+        prospek_kerja_prodi: prospekkerja,
+        bidang_studi: bidangstudi,
+        kategori_skill: kategoriskill,
+        kategori_alasan: kategorialasan,
+        kategori_kampus: kategorikampus,
+      },
+    });
+    revalidatePath("/dashboard/prodi")
+    return {
+      status: 200,
+      message: "Kategori skill berhasil ditambahkan",
+    };
+  } catch (error) {
+    console.error("Error edit Kategori skill:", error);
+    return {
+      status: 500,
+      message: "Terjadi kesalahan saat edit Kategori skill",
+    };
+  }
+}
+//delete
+export async function Delete(id:number) {
+  try {
+    await prisma.prodi.delete({
+      where: {
+        prodi_id : id,
+      },
+    });
+    revalidatePath("/dashboard/prodi")
+    return {
+      status: 200,
+      message: "Kategori skill berhasil dihapus",
+    };
+  } catch (error) {
+    console.error("Error hapus Kategori skill:", error);
+    return {
+      status: 500,
+      message: "Terjadi kesalahan saat hapus Kategori skill",
+    };
+  }
+}
