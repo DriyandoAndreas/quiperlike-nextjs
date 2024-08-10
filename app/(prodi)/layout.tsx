@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import NavBar from "@/components/ui/navbar";
 
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -26,12 +26,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="">
-            {/* navbar */}
-            <NavBar/>
-            <div className="container mt-8">{children}</div>
-            {/* footer */}
-          </div>
+          <NavBar />
+          <main className="m-8">{children}</main>
         </ThemeProvider>
       </body>
     </html>

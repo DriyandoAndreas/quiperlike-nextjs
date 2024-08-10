@@ -4,8 +4,6 @@ import {
   MenubarContent,
   MenubarItem,
   MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import * as React from "react";
@@ -35,26 +33,16 @@ export default function NavBar() {
               <MenubarTrigger>Prodi</MenubarTrigger>
               <MenubarContent>
                 <MenubarItem>
-                  New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+                  <Link href="/prodi">Lihat Semua Prodi</Link>
                 </MenubarItem>
-                <MenubarItem>New Window</MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem>Share</MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem>Print</MenubarItem>
               </MenubarContent>
             </MenubarMenu>
             <MenubarMenu>
               <MenubarTrigger>Kampus</MenubarTrigger>
               <MenubarContent>
                 <MenubarItem>
-                  New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+                  <Link href="/kampus">Lihat Semua Kampus</Link>
                 </MenubarItem>
-                <MenubarItem>New Window</MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem>Share</MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem>Print</MenubarItem>
               </MenubarContent>
             </MenubarMenu>
           </Menubar>

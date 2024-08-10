@@ -37,7 +37,6 @@ export function DataTable<TData, TValue>({
                     <TableHead
                       key={header.id}
                       className="text-black dark:text-white"
-                      
                     >
                       {header.isPlaceholder
                         ? null
@@ -59,7 +58,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id} >
+                    <TableCell key={cell.id} >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
