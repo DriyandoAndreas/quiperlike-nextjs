@@ -35,6 +35,7 @@ export async function Create(formData: FormData) {
     const kategoriskill = formData.get("kategori_skill") as string;
     const kategorialasan = formData.get("kategori_alasan") as string;
     const kategorikampus = formData.get("kategori_kampus") as string;
+    const duniaperkuliahan = formData.get("dunia_perkuliahan") as string;
 
    await prisma.prodi.create({
       data: {
@@ -45,6 +46,7 @@ export async function Create(formData: FormData) {
         kategori_skill: kategoriskill,
         kategori_alasan: kategorialasan,
         kategori_kampus: kategorikampus,
+        dunia_perkuliahan: duniaperkuliahan,
       },
     });
     revalidatePath("/dashboard/prodi")
@@ -71,6 +73,7 @@ export async function Edit(formData: FormData) {
     const kategoriskill = formData.get("kategori_skill") as string;
     const kategorialasan = formData.get("kategori_alasan") as string;
     const kategorikampus = formData.get("kategori_kampus") as string;
+    const duniaperkuliahan = formData.get("dunia_perkuliahan") as string;
 
     await prisma.prodi.update({
       where: {
@@ -83,7 +86,8 @@ export async function Edit(formData: FormData) {
         bidang_studi: bidangstudi,
         kategori_skill: kategoriskill,
         kategori_alasan: kategorialasan,
-        kategori_kampus: kategorikampus,
+       kategori_kampus: kategorikampus,
+        dunia_perkuliahan: duniaperkuliahan,
       },
     });
     revalidatePath("/dashboard/prodi")

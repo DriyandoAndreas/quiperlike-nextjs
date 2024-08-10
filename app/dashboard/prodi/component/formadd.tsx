@@ -129,6 +129,16 @@ export default function FormKategoriSkill() {
               </div>
             </div>
             <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Dunia Perkuliahan</Label>
+                <Textarea
+                  name="dunia_perkuliahan"
+                  placeholder="Dunia Perkuliahan"
+                  required
+                ></Textarea>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
               {/* <Label>Bidang Studi</Label> */}
               <Select name="bidang_studi">
                 <SelectTrigger>

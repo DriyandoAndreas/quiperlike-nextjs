@@ -60,6 +60,7 @@ export default function FormEdit({ id }: FormEditProps) {
     kategori_skill: "",
     kategori_alasan: "",
     kategori_kampus: "",
+    dunia_perkuliahan: "",
   });
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -166,6 +167,20 @@ export default function FormEdit({ id }: FormEditProps) {
               </div>
             </div>
             <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Dunia Perkuliahan</Label>
+                <Textarea
+                  name="dunia_perkuliahan"
+                  placeholder="Prospek Kerja"
+                  value={data.dunia_perkuliahan}
+                  onChange={(e) =>
+                    setData({ ...data, dunia_perkuliahan: e.target.value })
+                  }
+                  required
+                ></Textarea>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
               {/* <Label>Bidang Studi</Label> */}
               <Select name="bidang_studi" defaultValue={data.bidang_studi}>
                 <SelectTrigger>
@@ -203,7 +218,10 @@ export default function FormEdit({ id }: FormEditProps) {
             </div>
             <div className="flex items-center space-x-2 py-2">
               {/* <Label>Kategori Alasan</Label> */}
-              <Select name="kategori_alasan" defaultValue={data.kategori_alasan}>
+              <Select
+                name="kategori_alasan"
+                defaultValue={data.kategori_alasan}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih Kategori Alasan" />
                 </SelectTrigger>
@@ -221,7 +239,10 @@ export default function FormEdit({ id }: FormEditProps) {
             </div>
             <div className="flex items-center space-x-2 py-2">
               {/* <Label>Kategori Kampus</Label> */}
-              <Select name="kategori_kampus" defaultValue={data.kategori_kampus}>
+              <Select
+                name="kategori_kampus"
+                defaultValue={data.kategori_kampus}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih Kategori Kampus" />
                 </SelectTrigger>

@@ -22,6 +22,7 @@ model prodi {
   nama_prodi          String                          @db.VarChar(255)
   deskripsi_prodi     String                          @db.LongText
   prospek_kerja_prodi String                          @db.LongText
+  dunia_perkuliahan   String                          @db.LongText
   bidang_studi        String
   bidangstudi         bidang_studi[]
   kategori_skill      String
@@ -55,20 +56,20 @@ model kategori_skill_konten {
   kategori_skill_konten_id Int                    @id @default(autoincrement())
   judul_konten             String                 @db.VarChar(255)
   kategori_skill           String
-  kategoriskill            kategori_skill_prodi[] 
+  kategoriskill            kategori_skill_prodi[]
 }
 
 model kategori_alasan_memilih_prodi {
-  kategori_alasan_id Int                           @id @default(autoincrement())
-  nama_kategori      String                        @db.VarChar(255)
-  kategorialasan     prodi[]
-  alasanmemilihkonten     alasan_memilih_prodi_konten[]
+  kategori_alasan_id  Int                           @id @default(autoincrement())
+  nama_kategori       String                        @db.VarChar(255)
+  kategorialasan      prodi[]
+  alasanmemilihkonten alasan_memilih_prodi_konten[]
 }
 
 model alasan_memilih_prodi_konten {
   alasan_memilih_prodi_id Int                             @id @default(autoincrement())
   isi_asalasan            String                          @db.LongText
-  kategori_asalasan       String 
+  kategori_asalasan       String
   alasanmemilih           kategori_alasan_memilih_prodi[]
 }
 
