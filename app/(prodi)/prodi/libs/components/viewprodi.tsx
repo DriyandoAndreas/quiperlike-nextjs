@@ -17,6 +17,8 @@ type prodi = {
   bidang_studi: string;
 };
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function ViewProdi() {
   const [data, setData] = useState<prodi[]>([]);
   useEffect(() => {
@@ -36,11 +38,16 @@ export default function ViewProdi() {
         {data.map((item) => (
           <Card key={item.prodi_id}>
             <CardHeader>
-              <CardTitle>{item.nama_prodi}</CardTitle>
-              <CardDescription className="line-clamp-3">
+              <CardTitle className="line-clamp-1">{item.nama_prodi}</CardTitle>
+              <CardDescription className="line-clamp-4">
                 {item.deskripsi_prodi}
               </CardDescription>
             </CardHeader>
+            <CardFooter className="flex justify-between">
+              <Link href={`/prodi/${item.prodi_id}`}>
+                <Button>Lihat Selengkapnya</Button>
+              </Link>
+            </CardFooter>
           </Card>
         ))}
       </div>

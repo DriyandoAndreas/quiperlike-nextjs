@@ -18,18 +18,55 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function NavBar() {
   const { setTheme } = useTheme();
+  const router = usePathname();
+  const navLink = [
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Prodi",
+      path: "/prodi",
+    },
+    {
+      name: "Kampus",
+      path: "/kampus",
+    },
+  ];
+  const getLinkClasses = (path: string) => {
+    if (path === "/") {
+      return router === path ? "text-black dark:text-white" : "text-gray-400";
+    } else {
+      return router.startsWith(path)
+        ? "text-black dark:text-white"
+        : "text-gray-400";
+    }
+  };
   return (
     <>
-      <nav className="flex m-2 justify-between items-center">
+      <nav className="flex p-2 justify-between items-center sticky top-0 bg-background z-40 ">
         <div className="italic rounded-sm p-2 font-bold">
           <Link href="/">SoICC</Link>
         </div>
         <div>
           <Menubar>
-            <MenubarMenu>
+            {navLink.map((link, index) => {
+              return (
+                <MenubarMenu key={index}>
+                  <MenubarTrigger>
+                    <Link href={link.path} className={` ${getLinkClasses(`${link.path}`)}`}>
+                      {link.name}
+                    </Link>
+                  </MenubarTrigger>
+                </MenubarMenu>
+              );
+            })}
+
+            {/* <MenubarMenu>
               <MenubarTrigger>Prodi</MenubarTrigger>
               <MenubarContent>
                 <MenubarItem>
@@ -44,7 +81,7 @@ export default function NavBar() {
                   <Link href="/kampus">Lihat Semua Kampus</Link>
                 </MenubarItem>
               </MenubarContent>
-            </MenubarMenu>
+            </MenubarMenu> */}
           </Menubar>
         </div>
         <div>
