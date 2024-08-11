@@ -9,6 +9,8 @@ import {
 } from "@/actions/viewdetailprodi";
 import Link from "next/link";
 import Image from "next/image";
+import { Check } from "lucide-react";
+
 type prodi = {
   prodi_id: number;
   nama_prodi: string;
@@ -35,16 +37,18 @@ type kampus = {
   nama_kampus: string;
   status_kampus: string;
   url_kampus: string;
-  kategori_kampus : string;
+  kategori_kampus: string;
 };
-
 
 export default function ViewDetail({ id }: { id: string }) {
   const [data, setData] = useState<prodi | null>(null);
   const [skilldata, setSkillData] = useState<skill[]>([]); // Menggunakan array of skill
   const [alasandata, setAlasanData] = useState<alasan[]>([]); // Menggunakan array of skill
   const [kampusdata, setKampusData] = useState<kampus[]>([]); // Menggunakan array of skill
-
+    //
+     const [showFullDescription, setShowFullDescription] = useState(false);
+    const [showFullProspek, setShowFullProspek] = useState(false);
+      const [showFullAlasan, setShowFullAlasan] = useState<boolean[]>([]);
   useEffect(() => {
     async function getData() {
       const datas = await fetchall(id);
@@ -97,20 +101,32 @@ export default function ViewDetail({ id }: { id: string }) {
     getKampus();
   }, [data?.kategori_kampus]);
 
+  const toggleAlasan = (index: number) => {
+    setShowFullAlasan((prev) => {
+      const newToggles = [...prev];
+      newToggles[index] = !newToggles[index];
+      return newToggles;
+    });
+  };
   return (
     <>
-      <div className="container">
-        <div className="relative w-full h-64 sm:h-64">
-          <Image
-            priority={true}
-            src={`https://picsum.photos/800/200?random`}
-            alt="random image"
-            fill
-            className="object-cover py-8"
-            sizes="(max-width: 640px) 100vw, 800px"
-          />
+      <div className="flex my-8 px-8">
+        <div className="container">
+          <div className="relative w-full h-64 sm:h-64">
+            <Image
+              priority={true}
+              src={`https://picsum.photos/800/200?random`}
+              alt="random image"
+              fill
+              className="object-cover rounded-md"
+              sizes="(max-width: 640px) 100vw, 800px"
+            />
+          </div>
         </div>
-        <div className="flex-col">
+      </div>
+
+      <div className="flex-col  px-8">
+        <div className="container">
           <div>
             <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
               {data?.nama_prodi}
@@ -122,15 +138,27 @@ export default function ViewDetail({ id }: { id: string }) {
             </p>
           </div>
         </div>
-        <div className="flex my-8">
-          <div>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              {data?.deskripsi_prodi}
-            </p>
-          </div>
+      </div>
+      <div className="flex my-8 px-8">
+        <div className="container">
+          <p
+            className={`leading-7 [&:not(:first-child)]:mt-6 ${
+              showFullDescription ? "" : "line-clamp-4 text-ellipsis"
+            }`}
+          >
+            {data?.deskripsi_prodi}
+          </p>
+          <button
+            className="text-blue-500 mt-2"
+            onClick={() => setShowFullDescription(!showFullDescription)}
+          >
+            {showFullDescription ? "Sembunyikan" : "Baca Selengkapnya"}
+          </button>
         </div>
-        <div className="flex-col my-8">
-          <div className="py-4">
+      </div>
+      <div className="flex-col my-8 py-8  bg-gray-50 dark:bg-gray-600 px-8">
+        <div className="container">
+          <div className="py-4 ">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
               Pengetahuan dan Keahlian
             </h3>
@@ -141,57 +169,107 @@ export default function ViewDetail({ id }: { id: string }) {
                 key={skill.kategori_skill_konten_id}
                 className="w-full sm:w-1/2 p-2"
               >
-                <div className="p-4 border rounded-md">
-                  <div>{skill.judul_konten}</div>
+                <div className="p-4 text-black border rounded-md border-black dark:border-white dark:text-white">
+                  <div className="flex gap-4">
+                    <span>
+                      <Check className="text-blue-400 dark:text-w" />
+                    </span>
+                    {skill.judul_konten}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="flex-col my-8">
+      </div>
+      <div className="flex-col my-8 px-8">
+        <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
               Kenapa Harus Memilih ini?
             </h3>
           </div>
           <div className="flex flex-wrap">
-            {alasandata.map((skill) => (
+            {alasandata.map((alasan, index) => (
               <div
-                key={skill.alasan_memilih_prodi_id}
+                key={alasan.alasan_memilih_prodi_id}
                 className="w-full sm:w-1/2 p-2"
               >
-                <div className="p-4 border rounded-md">
-                  <div className="line-clamp-2">{skill.isi_asalasan}</div>
+                <div className="p-4 border rounded-md flex items-start">
+                  <div className="mr-4 text-xl font-bold">{index + 1}.</div>
+                  <div>
+                    <p
+                      className={`leading-7 ${
+                        showFullAlasan[index] ? "" : "line-clamp-2"
+                      }`}
+                    >
+                      {alasan.isi_asalasan}
+                    </p>
+                    <button
+                      className="text-blue-500 mt-2"
+                      onClick={() => toggleAlasan(index)}
+                    >
+                      {showFullAlasan[index]
+                        ? "Sembunyikan"
+                        : "Baca Selengkapnya"}
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="flex-col my-8">
+      </div>
+      <div className="flex-col my-8 py-8 px-8 bg-gray-50 dark:bg-gray-600">
+        <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
               Prospek Kerja
             </h3>
           </div>
           <div className="flex flex-wrap">
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
+            <p
+              className={`leading-7 [&:not(:first-child)]:mt-6 ${
+                showFullProspek ? "" : "line-clamp-4 text-ellipsis"
+              }`}
+            >
               {data?.prospek_kerja_prodi}
             </p>
+            <button
+              className="text-blue-500 mt-2"
+              onClick={() => setShowFullProspek(!showFullProspek)}
+            >
+              {showFullProspek ? "Sembunyikan" : "Baca Selengkapnya"}
+            </button>
           </div>
         </div>
-        <div className="flex-col my-8">
+      </div>
+      <div className="flex-col my-8 px-8">
+        <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
               Dunia Pekuliahan
             </h3>
           </div>
           <div className="flex flex-wrap">
+            <div className="relative w-full h-64 sm:h-64 ">
+              <Image
+                priority={true}
+                src={`https://picsum.photos/300/300?random`}
+                alt="random image"
+                fill
+                className="object-cover rounded-md"
+                sizes="(max-width: 640px) 100vw, 300px"
+              />
+            </div>
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               {data?.dunia_perkuliahan}
             </p>
           </div>
         </div>
-        <div className="flex-col my-8">
+      </div>
+      <div className="flex-col my-8 px-8">
+        <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
               Kampus Terkait
