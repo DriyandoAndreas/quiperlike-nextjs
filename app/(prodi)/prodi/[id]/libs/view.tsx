@@ -37,9 +37,7 @@ type kampus = {
   url_kampus: string;
   kategori_kampus : string;
 };
-function getRandomNumber(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
 
 export default function ViewDetail({ id }: { id: string }) {
   const [data, setData] = useState<prodi | null>(null);
@@ -105,10 +103,7 @@ export default function ViewDetail({ id }: { id: string }) {
         <div className="relative w-full h-64 sm:h-64">
           <Image
             priority={true}
-            src={`https://picsum.photos/800/200?random=${getRandomNumber(
-              1,
-              100
-            )}`}
+            src={`https://picsum.photos/800/200?random`}
             alt="random image"
             fill
             className="object-cover py-8"
