@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from "@/lib/prismadb";
-// import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async  function fetchall(id: string) {
    const prodiId = parseInt(id, 10);  // Konversi string id menjadi number

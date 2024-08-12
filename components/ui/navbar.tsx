@@ -3,6 +3,7 @@ import {
   Menubar,
   MenubarContent,
   MenubarItem,
+  MenubarLabel,
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
@@ -57,11 +58,11 @@ export default function NavBar() {
             {navLink.map((link, index) => {
               return (
                 <MenubarMenu key={index}>
-                  <MenubarTrigger>
+                  <MenubarLabel>
                     <Link href={link.path} className={` ${getLinkClasses(`${link.path}`)}`}>
                       {link.name}
                     </Link>
-                  </MenubarTrigger>
+                  </MenubarLabel>
                 </MenubarMenu>
               );
             })}
