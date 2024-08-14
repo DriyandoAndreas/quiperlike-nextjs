@@ -13,10 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model prodi
-// relasi prodi ke bidang_studi one to many
-// relasi prodi ke kategori_skill_prodi one to one
-// relasi prodi ke kategori_alasan_memilih_prodi on to one
+
 model prodi {
   prodi_id            Int                             @id @default(autoincrement())
   nama_prodi          String                          @db.VarChar(255)

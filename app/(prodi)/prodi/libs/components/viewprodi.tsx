@@ -8,12 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import {
   fetchall,
@@ -85,34 +79,6 @@ export default function ProdiPage() {
 
   return (
     <div className="container py-4">
-      {/* <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">Filter By Bidang Studi</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-72 h-56 overflow-auto">
-          <DropdownMenuItem
-            className="flex justify-between items-center p-2"
-            onClick={handleFilterAll}
-          >
-            <span className="">Semua Bidang Studi</span>
-            <span className="bg-blue-500 text-white rounded px-2 py-1">
-              {totalProdiCount}
-            </span>
-          </DropdownMenuItem>
-          {filters.map((item) => (
-            <DropdownMenuItem
-              className="flex justify-between items-center p-2"
-              key={item.bidang_studi_id}
-              onClick={() => handleFilterByBidangStudi(item.nama_bidang_studi)}
-            >
-              <span className="">{item.nama_bidang_studi}</span>
-              <span className="bg-blue-500 text-white rounded px-2 py-1">
-                {item._count.prodi}
-              </span>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu> */}
       <Select
         onValueChange={(value) => {
           if (value === "all") {

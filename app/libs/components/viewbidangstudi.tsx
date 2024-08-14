@@ -29,6 +29,18 @@ export default function ViewBidangStudi() {
   }, []);
   return (
     <>
+      <div className="py-8">
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          Solution of Information Career College
+        </h1>
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
+          SoICC adalah singkatan dari Solution of Information Career College
+          yang dikembangan untuk guru bimbingan dan konseling guna memudahkan
+          guru bimbingan dan konseling dalam memberikan layanan bidang karir
+          untuk peserta didik dalam hal ini perencanaan karir guna memberikan
+          Pemahaman dan informasi terkait program studi di perguruan tinggi.
+        </p>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {data.map((item) => (
           <Card key={item.bidang_studi_id}>
