@@ -8,9 +8,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL")
+// }
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model users{
@@ -23,9 +28,9 @@ model users{
 model prodi {
   prodi_id            Int                             @id @default(autoincrement())
   nama_prodi          String                          @db.VarChar(255)
-  deskripsi_prodi     String                          @db.LongText
-  prospek_kerja_prodi String                          @db.LongText
-  dunia_perkuliahan   String                          @db.LongText
+  deskripsi_prodi     String                          @db.Text
+  prospek_kerja_prodi String                          @db.Text
+  dunia_perkuliahan   String                          @db.Text
   bidang_studi        String
   bidangstudi         bidang_studi[]
   kategori_skill      String
@@ -44,7 +49,7 @@ model prodi {
 model bidang_studi {
   bidang_studi_id        Int     @id @default(autoincrement())
   nama_bidang_studi      String  @unique @db.VarChar(255)
-  deskripsi_bidang_studi String  @db.LongText
+  deskripsi_bidang_studi String  @db.Text
   prodi                  prodi[]
 }
 
@@ -71,7 +76,7 @@ model kategori_alasan_memilih_prodi {
 
 model alasan_memilih_prodi_konten {
   alasan_memilih_prodi_id Int                             @id @default(autoincrement())
-  isi_asalasan            String                          @db.LongText
+  isi_asalasan            String                          @db.Text
   kategori_asalasan       String
   alasanmemilih           kategori_alasan_memilih_prodi[]
 }
@@ -96,6 +101,6 @@ model kampus {
   kampus_id      Int    @id @default(autoincrement())
   nama_kampus    String @db.VarChar(255)
   status_kampus  String @db.VarChar(255)
-  url_web_kampus String @db.LongText
+  url_web_kampus String @db.Text
   lokasi_kampus  String @db.VarChar(255)
 }
