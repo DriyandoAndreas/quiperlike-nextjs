@@ -1,7 +1,9 @@
-import React from 'react'
-
+import React from "react";
+import ViewBidangStudi from "../../libs/components/viewbidangstudi";
 export default function page() {
   return (
-    <div>usrs</div>
-  )
+    <>
+      <ViewBidangStudi />
+    </>
+  );
 }
