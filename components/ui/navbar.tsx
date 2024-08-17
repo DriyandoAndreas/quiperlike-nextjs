@@ -43,7 +43,7 @@ export default function NavBar() {
   };
   return (
     <>
-      <nav className="flex p-2 justify-between items-center sticky top-0 bg-background z-40 ">
+      <nav className="flex p-2 justify-between items-center sticky top-0 bg-background z-40 border-b-4 border-b-blue-400">
         <div className="italic rounded-sm p-2 font-bold">
           <Link href="/">
             <Image

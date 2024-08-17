@@ -99,39 +99,47 @@ export default function ViewKampus() {
 
   return (
     <>
-      <div className="flex gap-4 m-8">
-        <Select onValueChange={handleFilterByProvince}>
-          <SelectTrigger className="w-64">
-            <SelectValue placeholder="Pilih Provinsi" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tampilkan Semua Provinsi</SelectItem>
-            {provinces.map((province, index) => (
-              <SelectItem key={index} value={province || ""}>
-                {province}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="bg-blue-200 py-4">
+        <div className="m-8 text-4xl font-bold">
+          <span className="">Cari Kampus Impianmu!</span>
+        </div>
+        <div className="flex gap-4 m-8">
+          <Select onValueChange={handleFilterByProvince}>
+            <SelectTrigger className="w-64 ">
+              <SelectValue placeholder="Pilih Provinsi" />
+            </SelectTrigger>
+            <SelectContent className="bg-blue-400 text-white">
+              <SelectItem value="all">Tampilkan Semua Provinsi</SelectItem>
+              {provinces.map((province, index) => (
+                <SelectItem key={index} value={province || ""}>
+                  {province}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-        <Select onValueChange={handleFilterByBidangStudi}>
-          <SelectTrigger className="w-64">
-            <SelectValue placeholder="Pilih Bidang Studi" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tampilkan Semua Bidang Studi</SelectItem>
-            {bidangStudi.map((bidang, index) => (
-              <SelectItem key={index} value={bidang || ""}>
-                {bidang}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+          <Select onValueChange={handleFilterByBidangStudi}>
+            <SelectTrigger className="w-64  ">
+              <SelectValue placeholder="Pilih Bidang Studi" />
+            </SelectTrigger>
+            <SelectContent className="bg-blue-400 text-white">
+              <SelectItem value="all">Tampilkan Semua Bidang Studi</SelectItem>
+              {bidangStudi.map((bidang, index) => (
+                <SelectItem key={index} value={bidang || ""}>
+                  {bidang}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-8">
         {kampusData.map((item) => (
-          <Card key={item.kampus_terkait_id}>
+          <Card
+            key={item.kampus_terkait_id}
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300"
+          >
             <div className="relative w-full h-0 pb-[56.25%]">
               <Image
                 src={item.url_gambar || "/default-image.jpg"}
@@ -148,7 +156,9 @@ export default function ViewKampus() {
             </CardHeader>
             <CardFooter className="flex justify-between">
               <Link href={`${item.url_kampus}`}>
-                <Button>Lihat Selengkapnya</Button>
+                <Button className="bg-blue-800 dark:text-white hover:bg-blue-950">
+                  Lihat Selengkapnya
+                </Button>
               </Link>
             </CardFooter>
           </Card>

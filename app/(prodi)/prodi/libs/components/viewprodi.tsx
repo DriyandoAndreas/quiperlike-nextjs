@@ -80,40 +80,49 @@ export default function ProdiPage() {
 
   return (
     <>
-      <div className="flex gap-4 m-8">
-        <Select
-          onValueChange={(value) => {
-            if (value === "all") {
-              handleFilterAll();
-            } else {
-              handleFilterByBidangStudi(value);
-            }
-          }}
-        >
-          <SelectTrigger className="w-64">
-            <SelectValue placeholder="Pilih Bidang Studi" />
-          </SelectTrigger>
-          <SelectContent className="w-64">
-            <SelectItem value="all">
-              Semua Bidang Studi{" "}
-              <span className="mx-2 px-2">{totalProdiCount}</span>
-            </SelectItem>
-            {filters.map((item) => (
-              <SelectItem
-                value={item.nama_bidang_studi}
-                key={item.bidang_studi_id}
-                className="flex justify-between"
-              >
-                <span>{item.nama_bidang_studi}</span>
-                <span className="mx-2  px-2">{item._count.prodi}</span>
+      <div className="bg-blue-200 py-4">
+        <div className="m-8 text-4xl font-bold">
+          <span className="">Explore Prodi</span>
+        </div>
+        <div className="flex gap-4 m-8">
+          <Select
+            onValueChange={(value) => {
+              if (value === "all") {
+                handleFilterAll();
+              } else {
+                handleFilterByBidangStudi(value);
+              }
+            }}
+          >
+            <SelectTrigger className="w-64">
+              <SelectValue placeholder="Pilih Bidang Studi" />
+            </SelectTrigger>
+            <SelectContent className="w-64 bg-blue-400 text-white">
+              <SelectItem value="all">
+                Semua Bidang Studi{" "}
+                <span className="mx-2 px-2">{totalProdiCount}</span>
               </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+              {filters.map((item) => (
+                <SelectItem
+                  value={item.nama_bidang_studi}
+                  key={item.bidang_studi_id}
+                  className="flex justify-between"
+                >
+                  <span>{item.nama_bidang_studi}</span>
+                  <span className="mx-2  px-2">{item._count.prodi}</span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-8">
         {prodiData.map((item) => (
-          <Card key={item.prodi_id}>
+          <Card
+            key={item.prodi_id}
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300"
+          >
             <CardHeader>
               <CardTitle className="line-clamp-1">{item.nama_prodi}</CardTitle>
               <CardDescription className="line-clamp-4">
@@ -122,7 +131,9 @@ export default function ProdiPage() {
             </CardHeader>
             <CardFooter className="flex justify-between">
               <Link href={`/prodi/${item.prodi_id}`}>
-                <Button>Lihat Selengkapnya</Button>
+                <Button className="bg-blue-800 dark:text-white hover:bg-blue-950">
+                  Lihat Selengkapnya
+                </Button>
               </Link>
             </CardFooter>
           </Card>
