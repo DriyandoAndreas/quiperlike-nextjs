@@ -8,37 +8,36 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// datasource db {
-//   provider = "mysql"
-//   url      = env("DATABASE_URL")
-// }
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model users{
-  id Int @id @default(autoincrement())
-  email String
-  password String
-  role String
+model users {
+  id           Int    @id @default(autoincrement())
+  email        String
+  password     String
+  role         String
   logincounter Int
 }
+
 model prodi {
-  prodi_id            Int                             @id @default(autoincrement())
-  nama_prodi          String                          @db.VarChar(255)
-  deskripsi_prodi     String                          @db.Text
-  prospek_kerja_prodi String                          @db.Text
-  dunia_perkuliahan   String                          @db.Text
-  bidang_studi        String
-  bidangstudi         bidang_studi[]
-  kategori_skill      String
-  kategoriskill       kategori_skill_prodi[]
-  kategori_alasan     String
-  kategorialasan      kategori_alasan_memilih_prodi[]
-  kategori_kampus     String
-  kategorikampus      kategori_kampus[]
+  prodi_id                 Int                             @id @default(autoincrement())
+  nama_prodi               String                          @db.VarChar(255)
+  deskripsi_prodi          String                          @db.Text
+  prospek_kerja_prodi      String                          @db.Text
+  dunia_perkuliahan        String                          @db.Text
+  bidang_studi             String
+  url_banner               String?                         @db.VarChar(255)
+  url_image_kampus_terkait String?                         @db.VarChar(255)
+  bidangstudi              bidang_studi[]
+  kategori_skill           String
+  kategoriskill            kategori_skill_prodi[]
+  kategori_alasan          String
+  kategorialasan           kategori_alasan_memilih_prodi[]
+  kategori_kampus          String
+  kategorikampus           kategori_kampus[]
 
   @@index([bidang_studi])
   @@index([kategori_skill])
@@ -93,14 +92,9 @@ model kampus_terkait {
   nama_kampus       String            @db.VarChar(255)
   status_kampus     String            @db.VarChar(255)
   url_kampus        String            @db.VarChar(255)
+  url_gambar        String?           @db.VarChar(255)
+  lokasi_kampus     String?           @db.VarChar(255)
+  bidang_studi      String?           @db.VarChar(255)
   kategori_kampus   String // References `nama_kategori`
   kategorikampus    kategori_kampus[] // many to one
-}
-
-model kampus {
-  kampus_id      Int    @id @default(autoincrement())
-  nama_kampus    String @db.VarChar(255)
-  status_kampus  String @db.VarChar(255)
-  url_web_kampus String @db.Text
-  lokasi_kampus  String @db.VarChar(255)
 }

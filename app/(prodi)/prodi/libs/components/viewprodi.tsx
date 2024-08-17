@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+
 import {
   Card,
   CardDescription,
@@ -78,37 +79,38 @@ export default function ProdiPage() {
   };
 
   return (
-    <div className="container py-4">
-      <Select
-        onValueChange={(value) => {
-          if (value === "all") {
-            handleFilterAll();
-          } else {
-            handleFilterByBidangStudi(value);
-          }
-        }}
-      >
-        <SelectTrigger className="w-64">
-          <SelectValue placeholder="Pilih Bidang Studi" />
-        </SelectTrigger>
-        <SelectContent className="w-64">
-          <SelectItem value="all">
-            Semua Bidang Studi{" "}
-            <span className="mx-2 px-2">{totalProdiCount}</span>
-          </SelectItem>
-          {filters.map((item) => (
-            <SelectItem
-              value={item.nama_bidang_studi}
-              key={item.bidang_studi_id}
-              className="flex justify-between"
-            >
-              <span>{item.nama_bidang_studi}</span>
-              <span className="mx-2  px-2">{item._count.prodi}</span>
+    <>
+      <div className="flex gap-4 m-8">
+        <Select
+          onValueChange={(value) => {
+            if (value === "all") {
+              handleFilterAll();
+            } else {
+              handleFilterByBidangStudi(value);
+            }
+          }}
+        >
+          <SelectTrigger className="w-64">
+            <SelectValue placeholder="Pilih Bidang Studi" />
+          </SelectTrigger>
+          <SelectContent className="w-64">
+            <SelectItem value="all">
+              Semua Bidang Studi{" "}
+              <span className="mx-2 px-2">{totalProdiCount}</span>
             </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
+            {filters.map((item) => (
+              <SelectItem
+                value={item.nama_bidang_studi}
+                key={item.bidang_studi_id}
+                className="flex justify-between"
+              >
+                <span>{item.nama_bidang_studi}</span>
+                <span className="mx-2  px-2">{item._count.prodi}</span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-8">
         {prodiData.map((item) => (
           <Card key={item.prodi_id}>
@@ -126,6 +128,6 @@ export default function ProdiPage() {
           </Card>
         ))}
       </div>
-    </div>
+    </>
   );
 }

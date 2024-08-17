@@ -16,6 +16,9 @@ export type Konten = {
   status_kampus: string;
   url_kampus: string;
   kategori_kampus: string;
+  lokasi_kampus: string|null;
+  url_gambar: string | null;
+  bidang_studi: string | null;
 };
 
 export const column: ColumnDef<Konten>[] = [
@@ -30,6 +33,18 @@ export const column: ColumnDef<Konten>[] = [
   {
     accessorKey: "status_kampus",
     header: "Status",
+  },
+  {
+    accessorKey: "lokasi_kampus",
+    header: "Lokasi",
+  },
+  {
+    accessorKey: "url_gambar",
+    header: "Url Gambar",
+  },
+  {
+    accessorKey: "bidang_studi",
+    header: "Bidang Studi",
   },
   {
     accessorKey: "url_kampus",

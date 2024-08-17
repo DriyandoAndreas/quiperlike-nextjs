@@ -42,6 +42,9 @@ export default function FormEditData({ id }: FormEditProps) {
     status_kampus: "",
     url_kampus: "",
     kategori_kampus: "",
+    lokasi_kampus: "" as string | null,
+    url_gambar: "" as string | null,
+    bidang_studi: "" as string| null,
   });
   const [dataKategori, setDataKategori] = useState<Kategori[]>([]);
   const { toast } = useToast();
@@ -124,6 +127,49 @@ export default function FormEditData({ id }: FormEditProps) {
                     setData({ ...data, status_kampus: e.target.value })
                   }
                   required
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Lokasi</Label>
+                <Input
+                  name="lokasi_kampus"
+                  placeholder="Lokasi Kampus"
+                  type="text"
+                  value={data.lokasi_kampus || ""}
+                  onChange={(e) =>
+                    setData({ ...data, lokasi_kampus: e.target.value })
+                  }
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Url Gambar</Label>
+                <Input
+                  name="url_gambar"
+                  placeholder="Url Gambar"
+                  type="text"
+                  value={data.url_gambar || ""}
+                  onChange={(e) =>
+                    setData({ ...data, url_gambar: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Bidang Studi</Label>
+                <Input
+                  name="bidang_studi"
+                  placeholder="Bidang Studi"
+                  type="text"
+                  value={data.bidang_studi || ""}
+                  onChange={(e) =>
+                    setData({ ...data, bidang_studi: e.target.value })
+                  }
                 />
               </div>
             </div>

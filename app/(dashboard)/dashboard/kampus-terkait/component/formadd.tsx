@@ -61,7 +61,7 @@ export default function FormAddData() {
             <Plus size={16} />
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="max-w-xl max-h-full overflow-auto m-4">
           <form onSubmit={handleSubmit}>
             <DialogHeader className="py-2">
               <DialogTitle>Form Tambah Data</DialogTitle>
@@ -88,6 +88,33 @@ export default function FormAddData() {
                   placeholder="Status Negeri/Swasta"
                   type="text"
                   required
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Lokasi</Label>
+                <Input
+                  name="lokasi_kampus"
+                  placeholder="Lokasi Kampus"
+                  type="text"
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Url Gambar</Label>
+                <Input name="url_gambar" placeholder="Url Gambar" type="text" />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Bidang Studi</Label>
+                <Input
+                  name="bidang_studi"
+                  placeholder="Bidang studi"
+                  type="text"
                 />
               </div>
             </div>

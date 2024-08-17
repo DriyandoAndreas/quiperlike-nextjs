@@ -20,13 +20,19 @@ export async function Create(formData: FormData) {
     const status = formData.get("status_kampus") as string;
     const url = formData.get("url_kampus") as string;
     const kategori = formData.get("kategori_kampus") as string;
+    const url_gambar = formData.get("url_gambar") as string;
+    const lokasi_kampus = formData.get("lokasi_kampus") as string;
+    const bidang_studi = formData.get("bidang_studi") as string;
 
   await prisma.kampus_terkait.create({
       data: {
         nama_kampus: nama,
         status_kampus: status,
         url_kampus: url,
-        kategori_kampus: kategori,
+      kategori_kampus: kategori,
+      lokasi_kampus: lokasi_kampus,
+      url_gambar: url_gambar,
+        bidang_studi: bidang_studi,
       },
     });
 
@@ -51,7 +57,9 @@ export async function Edit(formData: FormData) {
     const status = formData.get("status_kampus") as string;
     const url = formData.get("url_kampus") as string;
     const kategori = formData.get("kategori_kampus") as string;
-
+const url_gambar = formData.get("url_gambar") as string;
+    const lokasi_kampus = formData.get("lokasi_kampus") as string;
+    const bidang_studi = formData.get("bidang_studi") as string;
     await prisma.kampus_terkait.update({
       where: {
         kampus_terkait_id : id,
@@ -61,6 +69,9 @@ export async function Edit(formData: FormData) {
         status_kampus: status,
         url_kampus: url,
         kategori_kampus: kategori,
+         lokasi_kampus: lokasi_kampus,
+        url_gambar: url_gambar,
+        bidang_studi: bidang_studi,
       },
     });
     revalidatePath("/dashboard/kampus-terkait")
