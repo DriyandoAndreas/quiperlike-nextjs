@@ -15,7 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import {
   Card,
   CardDescription,
@@ -25,17 +24,20 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+
 type Kampus = {
   kampus_terkait_id: number;
   status_kampus: string;
   url_kampus: string;
   nama_kampus: string;
-  url_gambar: string | null; // Update tipe data
+  url_gambar: string | null;
 };
+
 export default function ViewKampus() {
   const [kampusData, setKampusData] = useState<Kampus[]>([]);
   const [provinces, setProvinces] = useState<(string | null)[]>([]);
   const [bidangStudi, setBidangStudi] = useState<(string | null)[]>([]);
+  const [showFilters, setShowFilters] = useState(true);
 
   useEffect(() => {
     async function fetchAll() {
@@ -46,13 +48,13 @@ export default function ViewKampus() {
         status_kampus: item.status_kampus,
         url_kampus: item.url_kampus,
         nama_kampus: item.nama_kampus,
-        url_gambar: item.url_gambar ? item.url_gambar : "/default-image.jpg", // Ambil url_gambar
+        url_gambar: item.url_gambar ? item.url_gambar : "/default-image.jpg",
       }));
 
       const fetchedProvinces = await fetchProvinces();
       setProvinces(fetchedProvinces);
 
-      const fetchedBidangStudi = await fetchBidangStudi(); // Ensure correct typing
+      const fetchedBidangStudi = await fetchBidangStudi();
       setBidangStudi(fetchedBidangStudi);
 
       setKampusData(formattedData);
@@ -60,15 +62,41 @@ export default function ViewKampus() {
 
     fetchAll();
   }, []);
- const handleFilterByProvince = async (province: string) => {
-   const filteredData = await filterByProvince(province);
-   setKampusData(filteredData);
- };
 
- const handleFilterByBidangStudi = async (bidang: string) => {
-   const filteredData = await filterByBidangStudi(bidang);
-   setKampusData(filteredData);
- };
+  const handleFilterByProvince = async (province: string) => {
+    if (province === "all") {
+      const allData = await fetchall();
+       const formattedData = allData.map((item: any) => ({
+         kampus_terkait_id: item.kampus_terkait_id,
+         status_kampus: item.status_kampus,
+         url_kampus: item.url_kampus,
+         nama_kampus: item.nama_kampus,
+         url_gambar: item.url_gambar ? item.url_gambar : "/default-image.jpg",
+       }));
+      setKampusData(formattedData);
+    } else {
+      const filteredData = await filterByProvince(province);
+      setKampusData(filteredData);
+    }
+  };
+
+  const handleFilterByBidangStudi = async (bidang: string) => {
+    if (bidang === "all") {
+      const allData = await fetchall();
+      const formattedData = allData.map((item: any) => ({
+        kampus_terkait_id: item.kampus_terkait_id,
+        status_kampus: item.status_kampus,
+        url_kampus: item.url_kampus,
+        nama_kampus: item.nama_kampus,
+        url_gambar: item.url_gambar ? item.url_gambar : "/default-image.jpg",
+      }));
+      setKampusData(formattedData);
+    } else {
+      const filteredData = await filterByBidangStudi(bidang);
+      setKampusData(filteredData);
+    }
+  };
+
   return (
     <>
       <div className="flex gap-4 m-8">
@@ -77,8 +105,9 @@ export default function ViewKampus() {
             <SelectValue placeholder="Pilih Provinsi" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="all">Tampilkan Semua Provinsi</SelectItem>
             {provinces.map((province, index) => (
-              <SelectItem key={index} value={province||''}>
+              <SelectItem key={index} value={province || ""}>
                 {province}
               </SelectItem>
             ))}
@@ -90,14 +119,16 @@ export default function ViewKampus() {
             <SelectValue placeholder="Pilih Bidang Studi" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="all">Tampilkan Semua Bidang Studi</SelectItem>
             {bidangStudi.map((bidang, index) => (
-              <SelectItem key={index} value={bidang||''}>
+              <SelectItem key={index} value={bidang || ""}>
                 {bidang}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-8">
         {kampusData.map((item) => (
           <Card key={item.kampus_terkait_id}>

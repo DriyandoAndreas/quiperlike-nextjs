@@ -1,12 +1,6 @@
 "use client";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarLabel,
-  MenubarMenu,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
+import Image from "next/image";
+import { Menubar, MenubarLabel, MenubarMenu } from "@/components/ui/menubar";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -51,61 +45,62 @@ export default function NavBar() {
     <>
       <nav className="flex p-2 justify-between items-center sticky top-0 bg-background z-40 ">
         <div className="italic rounded-sm p-2 font-bold">
-          <Link href="/">SoICC</Link>
+          <Link href="/">
+            <Image
+              src="/logo-uny.png"
+              width={150}
+              height={150}
+              alt="Universitas Negri Yogyakarta"
+            />
+          </Link>
         </div>
         <div>
-          <Menubar>
-            {navLink.map((link, index) => {
-              return (
-                <MenubarMenu key={index}>
-                  <MenubarLabel>
-                    <Link href={link.path} className={` ${getLinkClasses(`${link.path}`)}`}>
-                      {link.name}
-                    </Link>
-                  </MenubarLabel>
-                </MenubarMenu>
-              );
-            })}
-
-            {/* <MenubarMenu>
-              <MenubarTrigger>Prodi</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem>
-                  <Link href="/prodi">Lihat Semua Prodi</Link>
-                </MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-            <MenubarMenu>
-              <MenubarTrigger>Kampus</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem>
-                  <Link href="/kampus">Lihat Semua Kampus</Link>
-                </MenubarItem>
-              </MenubarContent>
-            </MenubarMenu> */}
-          </Menubar>
+          <Link href="/">
+            <div className="font-bold text-center">SoiCC</div>
+            <span className="italic">
+              Solution of Information Career College
+            </span>
+          </Link>
         </div>
         <div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dark
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="flex gap-4">
+            <Menubar>
+              {navLink.map((link, index) => {
+                return (
+                  <MenubarMenu key={index}>
+                    <MenubarLabel>
+                      <Link
+                        href={link.path}
+                        className={` ${getLinkClasses(`${link.path}`)}`}
+                      >
+                        {link.name}
+                      </Link>
+                    </MenubarLabel>
+                  </MenubarMenu>
+                );
+              })}
+            </Menubar>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </nav>
     </>
