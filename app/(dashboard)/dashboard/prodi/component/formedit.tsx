@@ -61,6 +61,8 @@ export default function FormEdit({ id }: FormEditProps) {
     kategori_alasan: "",
     kategori_kampus: "",
     dunia_perkuliahan: "",
+    url_banner: "" as string | null,
+    url_image_kampus_terkait: "" as string | null,
   });
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -175,6 +177,37 @@ export default function FormEdit({ id }: FormEditProps) {
                   value={data.dunia_perkuliahan}
                   onChange={(e) =>
                     setData({ ...data, dunia_perkuliahan: e.target.value })
+                  }
+                  required
+                ></Textarea>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Url Banner</Label>
+                <Textarea
+                  name="url_banner"
+                  placeholder="Url Banner"
+                  value={data.url_banner || ""}
+                  onChange={(e) =>
+                    setData({ ...data, url_banner: e.target.value })
+                  }
+                  required
+                ></Textarea>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 py-2">
+              <div className="grid flex-1 gap-2">
+                <Label>Url Gambar Kampus Terkait</Label>
+                <Textarea
+                  name="url_image_kampus_terkait"
+                  placeholder="Url Gambar Kampus Terkait"
+                  value={data.url_image_kampus_terkait || ""}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      url_image_kampus_terkait: e.target.value,
+                    })
                   }
                   required
                 ></Textarea>

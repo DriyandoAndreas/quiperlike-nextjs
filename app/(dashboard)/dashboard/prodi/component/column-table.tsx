@@ -19,6 +19,8 @@ export type Prodi = {
   kategori_skill: string;
   kategori_alasan: string;
   kategori_kampus: string;
+  url_banner: string | null;
+  url_image_kampus_terkait: string | null;
 };
 
 export const column: ColumnDef<Prodi>[] = [
@@ -53,6 +55,14 @@ export const column: ColumnDef<Prodi>[] = [
   {
     accessorKey: "kategori_kampus",
     header: "Kategori Kampus",
+  },
+  {
+    accessorKey: "url_banner",
+    header: "Banner",
+  },
+  {
+    accessorKey: "url_image_kampus_terkait",
+    header: "Dunia Kampus Image",
   },
 
   {
