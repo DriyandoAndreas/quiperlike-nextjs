@@ -51,6 +51,8 @@ export default function NavBar() {
               width={150}
               height={150}
               alt="Universitas Negri Yogyakarta"
+              priority ={true}
+              style={{ width: "auto", height: "auto" }}
             />
           </Link>
         </div>

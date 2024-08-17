@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import Image from "next/image";
 import {
   Card,
   CardDescription,
@@ -40,6 +40,7 @@ type Prodi = {
   prospek_kerja_prodi: string;
   dunia_perkuliahan: string;
   bidang_studi: string;
+  url_banner: string | null;
 };
 
 export default function ProdiPage() {
@@ -121,8 +122,18 @@ export default function ProdiPage() {
         {prodiData.map((item) => (
           <Card
             key={item.prodi_id}
-            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300"
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300 drop-shadow-lg hover:filter-none"
           >
+            <div className="relative w-full h-0 pb-[56.25%]">
+              <Image
+                src={item.url_banner || "/default-bidang-studi.jpg"}
+                alt="prodi"
+                fill
+                priority={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover rounded-r-md rounded-l-md rounded-br-none rounded-bl-none"
+              />
+            </div>
             <CardHeader>
               <CardTitle className="line-clamp-1">{item.nama_prodi}</CardTitle>
               <CardDescription className="line-clamp-4">
