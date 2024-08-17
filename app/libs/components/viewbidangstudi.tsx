@@ -28,7 +28,7 @@ export default function ViewBidangStudi() {
   }, []);
   return (
     <>
-      <div className="md:flex items-center py-8">
+      <div className="md:flex items-center py-8 gap-8">
         <div className="md:w-1/2 lg:w-2/3">
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             Solution of Information Career College
@@ -56,9 +56,9 @@ export default function ViewBidangStudi() {
           <Image
             src={"/banner-section-home.png"}
             alt={"banner section home"}
-            width={200}
-            height={200}
-            className="absolute top-0 left-0 w-full h-full object-cover rounded-md z-10 scale-50"
+            width={600}
+            height={600}
+            className="absolute top-0 left-0 w-full h-full object-cover rounded-md z-10"
           />
         </div>
       </div>

@@ -81,7 +81,7 @@ export default function ProdiPage() {
 
   return (
     <>
-      <div className="bg-blue-200 py-4">
+      <div className="bg-blue-200 py-4 dark:bg-blue-800">
         <div className="m-8 text-4xl font-bold">
           <span className="">Explore Prodi</span>
         </div>

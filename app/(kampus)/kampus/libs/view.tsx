@@ -99,7 +99,7 @@ export default function ViewKampus() {
 
   return (
     <>
-      <div className="bg-blue-200 py-4">
+      <div className="bg-blue-200 py-4 dark:bg-blue-800">
         <div className="m-8 text-4xl font-bold">
           <span className="">Cari Kampus Impianmu!</span>
         </div>
