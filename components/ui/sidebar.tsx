@@ -194,34 +194,7 @@ export default function SideBar() {
                     </Link>
                   );
                 })}
-              {/* <button
-                onClick={toggleDropdownKampus}
-                className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
-                  childLinkKampus
-                )}`}
-              >
-                <span>Kampus</span>
-                <ChevronDown
-                  className={`transition-transform ${
-                    isDropdonwKampusOpen ? "transform rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {isDropdonwKampusOpen &&
-                navLinkKampus.map((link, index) => {
-                  return (
-                    <Link
-                      onClick={toggleMobileMenu}
-                      key={index}
-                      href={link.path}
-                      className={`block px-4 py-2 text-sm ${getLinkClasses(
-                        `${link.path}`
-                      )}`}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })} */}
+              
             </div>
           </div>
         </div>
@@ -301,33 +274,7 @@ export default function SideBar() {
                     </Link>
                   );
                 })}
-              {/* <button
-                onClick={toggleDropdownKampus}
-                className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-sm  ${isParentActive(
-                  childLinkKampus
-                )}`}
-              >
-                <span>Kampus</span>
-                <ChevronDown
-                  className={`transition-transform ${
-                    isDropdonwKampusOpen ? "transform rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {isDropdonwKampusOpen &&
-                navLinkKampus.map((link, index) => {
-                  return (
-                    <Link
-                      key={index}
-                      href={link.path}
-                      className={`block px-4 py-2 text-sm ${getLinkClasses(
-                        `${link.path}`
-                      )}`}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })} */}
+              
             </div>
           </div>
         </nav>

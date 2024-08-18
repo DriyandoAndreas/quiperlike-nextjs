@@ -110,7 +110,7 @@ export default function ViewDetail({ id }: { id: string }) {
   };
   return (
     <>
-      <div className="flex my-8 px-8">
+      <div className="flex my-8 lg:px-8">
         <div className="container">
           <div className="relative w-full h-64 sm:h-64">
             <Image
@@ -122,10 +122,11 @@ export default function ViewDetail({ id }: { id: string }) {
               sizes="(max-width: 640px) 100vw, 800px"
             />
           </div>
+          
         </div>
       </div>
 
-      <div className="flex-col  px-8">
+      <div className="flex-col  lg:px-8">
         <div className="container">
           <div>
             <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -139,7 +140,7 @@ export default function ViewDetail({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className="flex my-8 px-8">
+      <div className="flex my-8 lg:px-8">
         <div className="container">
           <p
             className={`leading-7 [&:not(:first-child)]:mt-6 ${
@@ -156,7 +157,7 @@ export default function ViewDetail({ id }: { id: string }) {
           </button>
         </div>
       </div>
-      <div className="flex-col my-8 py-8  bg-gray-50 dark:bg-gray-600 px-8">
+      <div className="flex-col my-8 py-8  bg-blue-200 dark:bg-blue-800 lg:px-8">
         <div className="container">
           <div className="py-4 ">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -172,7 +173,7 @@ export default function ViewDetail({ id }: { id: string }) {
                 <div className="p-4 text-black border rounded-md border-black dark:border-white dark:text-white">
                   <div className="flex gap-4">
                     <span>
-                      <Check className="text-blue-400 dark:text-w" />
+                      <Check className="text-blue-800 dark:text-w" />
                     </span>
                     {skill.judul_konten}
                   </div>
@@ -182,7 +183,7 @@ export default function ViewDetail({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className="flex-col my-8 px-8">
+      <div className="flex-col my-8 lg:px-8">
         <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -195,7 +196,7 @@ export default function ViewDetail({ id }: { id: string }) {
                 key={alasan.alasan_memilih_prodi_id}
                 className="w-full sm:w-1/2 p-2"
               >
-                <div className="p-4 border rounded-md flex items-start">
+                <div className="p-4  flex items-start">
                   <div className="mr-4 text-xl font-bold">{index + 1}.</div>
                   <div>
                     <p
@@ -220,7 +221,7 @@ export default function ViewDetail({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className="flex-col my-8 py-8 px-8 bg-gray-50 dark:bg-gray-600">
+      <div className="flex-col my-8 py-8 lg:px-8 bg-blue-200 dark:bg-blue-800">
         <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -244,7 +245,7 @@ export default function ViewDetail({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className="flex-col my-8 px-8">
+      <div className="flex-col my-8 lg:px-8">
         <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -268,7 +269,7 @@ export default function ViewDetail({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className="flex-col my-8 px-8">
+      <div className="flex-col my-8 lg:px-8">
         <div className="container">
           <div className="py-4">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -281,7 +282,7 @@ export default function ViewDetail({ id }: { id: string }) {
                 key={skill.kampus_terkait_id}
                 className="w-full sm:w-1/2 p-2"
               >
-                <div className="p-4 border rounded-md">
+                <div className="p-4 border rounded-md transition ease-in-out delay-150  lg:hover:-translate-y-1 lg:hover:scale-110 lg:hover:bg-blue-800 lg:hover:text-white lg:hover:mx-4 duration-300">
                   <Link href={skill.url_kampus}>
                     <div className="line-clamp-2">{skill.nama_kampus}</div>
                   </Link>

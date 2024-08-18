@@ -4,7 +4,7 @@ import { Menubar, MenubarLabel, MenubarMenu } from "@/components/ui/menubar";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -43,7 +43,72 @@ export default function NavBar() {
   };
   return (
     <>
-      <nav className="flex p-2 justify-between items-center sticky top-0 bg-background z-40 border-b-4 border-b-blue-400">
+      <nav className="sticky top-0 bg-background z-40 border-b-4 border-b-blue-400">
+        <div className="md:hidden">
+          <div className="flex flex-row justify-between items-center p-4">
+            <div>
+              <Link href="/">
+                <Image
+                  src="/logo-uny.png"
+                  width={150}
+                  height={150}
+                  alt="Universitas Negri Yogyakarta"
+                  priority={true}
+                  style={{ width: "50%" }}
+                />
+              </Link>
+            </div>
+            <div>
+              <div className="flex flex-col items-center">
+                <div className="font-bold">SoiCC</div>
+              </div>
+            </div>
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    <span className="sr-only">Toggle theme</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setTheme("light")}>
+                    Light
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    Dark
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("system")}>
+                    System
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div className="md:hidden fixed bottom-0 z-40 bg-background  w-full p-4 border-t-4 border-t-blue-400">
+        <div className="flex flex-row justify-center gap-8">
+          <Menubar>
+            {navLink.map((link, index) => {
+              return (
+                <MenubarMenu key={index}>
+                  <MenubarLabel>
+                    <Link
+                      href={link.path}
+                      className={` ${getLinkClasses(`${link.path}`)}`}
+                    >
+                      {link.name}
+                    </Link>
+                  </MenubarLabel>
+                </MenubarMenu>
+              );
+            })}
+          </Menubar>
+        </div>
+      </div>
+      <nav className="hidden lg:flex p-2 lg:justify-between lg:items-center sticky top-0 bg-background z-40 border-b-4 border-b-blue-400">
         <div className="italic rounded-sm p-2 font-bold">
           <Link href="/">
             <Image
@@ -51,8 +116,8 @@ export default function NavBar() {
               width={150}
               height={150}
               alt="Universitas Negri Yogyakarta"
-              priority ={true}
-              style={{ width: "auto", height: "auto" }}
+              priority={true}
+              style={{ width: "50%", height: "auto" }}
             />
           </Link>
         </div>

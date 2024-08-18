@@ -122,7 +122,7 @@ export default function ProdiPage() {
         {prodiData.map((item) => (
           <Card
             key={item.prodi_id}
-            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300 drop-shadow-lg hover:filter-none"
+            className="transition ease-in-out delay-150 lg:hover:-translate-y-1 lg:hover:scale-110 lg:hover: duration-300 drop-shadow-lg lg:hover:filter-none"
           >
             <div className="relative w-full h-0 pb-[56.25%]">
               <Image
