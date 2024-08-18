@@ -58,7 +58,7 @@ export default function ViewBidangStudi() {
           />
         </div>
       </div>
-      <div className="md:flex flex-col items-center py-8 gap-8">
+      <div className="sm:flex sm:flex-col lg:flex lg:flex-row items-center py-8 gap-8">
         <div>
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             Kamu ingin tahu lebih banyak tentang prodi impianmu?
@@ -68,7 +68,7 @@ export default function ViewBidangStudi() {
             sampai salah pilih ya sobat!
           </p>
           <div className="py-4">
-            <Button className="bg-blue-800 hover:bg-blue-950">
+            <Button className="bg-blue-800 hover:bg-blue-950 dark:text-white">
               <Link href="/prodi">Cari Tahu Disini</Link>
             </Button>
           </div>
@@ -89,11 +89,11 @@ export default function ViewBidangStudi() {
             Kampus mana yang kamu pilih?
           </h1>
           <p className="py-4">
-            Pilihan kampus ada di indonesia, seusaikan dengan kebutuhanmu.
-            cari tahu tentang fasilitas, lingkungan kampus, biaya dan lainnya.
+            Pilihan kampus ada di indonesia, seusaikan dengan kebutuhanmu. cari
+            tahu tentang fasilitas, lingkungan kampus, biaya dan lainnya.
           </p>
           <div className="py-4">
-            <Button className="bg-blue-800 hover:bg-blue-950">
+            <Button className="bg-blue-800 hover:bg-blue-950 dark:text-white">
               <Link href="/kampus">Lihat Disini</Link>
             </Button>
           </div>
