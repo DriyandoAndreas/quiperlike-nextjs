@@ -1,11 +1,6 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { fetchall } from "@/actions/mainview";
 type bidangstudi = {
   bidang_studi_id: number;
@@ -13,6 +8,7 @@ type bidangstudi = {
   deskripsi_bidang_studi: string;
 };
 import { useState, useEffect } from "react";
+import Link from "next/link";
 export default function ViewBidangStudi() {
   const [data, setData] = useState<bidangstudi[]>([]);
   useEffect(() => {
@@ -62,16 +58,56 @@ export default function ViewBidangStudi() {
           />
         </div>
       </div>
+      <div className="md:flex flex-col items-center py-8 gap-8">
+        <div>
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Kamu ingin tahu lebih banyak tentang prodi impianmu?
+          </h1>
+          <p className="py-4">
+            Pilihlah Bidang studi sesuai dengan apa yang kamu inginkan, jangan
+            sampai salah pilih ya sobat!
+          </p>
+          <div className="py-4">
+            <Button className="bg-blue-800 hover:bg-blue-950">
+              <Link href="/prodi">Cari Tahu Disini</Link>
+            </Button>
+          </div>
+        </div>
+        <div className="py-4 rounded-md">
+          <Image
+            src={"/bidang-studi-banner.jpg"}
+            alt={"bidang studi"}
+            width={600}
+            height={600}
+            className=" w-full h-full object-cover rounded-md z-10"
+          />
+        </div>
+      </div>
+      <div className="sm:flex sm:flex-col lg:flex lg:flex-row items-center py-8 gap-8">
+        <div>
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Kampus mana yang kamu pilih?
+          </h1>
+          <p className="py-4">
+            Pilihan kampus ada di indonesia, seusaikan dengan kebutuhanmu.
+            cari tahu tentang fasilitas, lingkungan kampus, biaya dan lainnya.
+          </p>
+          <div className="py-4">
+            <Button className="bg-blue-800 hover:bg-blue-950">
+              <Link href="/kampus">Lihat Disini</Link>
+            </Button>
+          </div>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {data.map((item) => (
-          <Card key={item.bidang_studi_id}>
-            <CardHeader>
-              <CardTitle>{item.nama_bidang_studi}</CardTitle>
-              <CardDescription>{item.deskripsi_bidang_studi}</CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
+        <div className="py-4 rounded-md">
+          <Image
+            src={"/kampus-banner.jpg"}
+            alt={"bidang studi"}
+            width={600}
+            height={600}
+            className=" w-full h-full object-cover rounded-md z-10"
+          />
+        </div>
       </div>
     </>
   );
