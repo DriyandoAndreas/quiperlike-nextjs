@@ -100,13 +100,13 @@ export async function Edit(formData: FormData) {
     revalidatePath("/dashboard/prodi")
     return {
       status: 200,
-      message: "Kategori skill berhasil ditambahkan",
+      message: "berhasil ditambahkan",
     };
   } catch (error) {
-    console.error("Error edit Kategori skill:", error);
+    console.error("Error:", error);
     return {
       status: 500,
-      message: "Terjadi kesalahan saat edit Kategori skill",
+      message: "Terjadi kesalahan",
     };
   }
 }

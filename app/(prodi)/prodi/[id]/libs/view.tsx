@@ -21,6 +21,8 @@ type prodi = {
   kategori_skill: string;
   kategori_alasan: string;
   kategori_kampus: string;
+  url_banner: string | null;
+  url_image_kampus_terkait: string | null;
 };
 type skill = {
   kategori_skill_konten_id: number;
@@ -115,7 +117,7 @@ export default function ViewDetail({ id }: { id: string }) {
           <div className="relative w-full h-64 sm:h-64">
             <Image
               priority={true}
-              src={`https://picsum.photos/800/200?random`}
+              src={data?.url_banner || "/bidang-studi-banner.jpg"}
               alt="random image"
               fill
               className="object-cover rounded-md"
@@ -256,7 +258,7 @@ export default function ViewDetail({ id }: { id: string }) {
             <div className="relative w-full h-64 sm:h-64 ">
               <Image
                 priority={true}
-                src={`https://picsum.photos/300/300?random`}
+                src={data?.url_image_kampus_terkait || "/kampus-banner.jpg"}
                 alt="random image"
                 fill
                 className="object-cover rounded-md"
