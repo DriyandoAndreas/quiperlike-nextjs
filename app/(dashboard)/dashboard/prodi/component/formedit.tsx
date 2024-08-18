@@ -10,7 +10,7 @@ import {
   getAll,
 } from "@/actions/formactionprodi";
 import { useToast } from "@/components/ui/use-toast";
-import { Pencil } from "lucide-react";
+import { FormInput, Pencil } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -185,24 +185,26 @@ export default function FormEdit({ id }: FormEditProps) {
             <div className="flex items-center space-x-2 py-2">
               <div className="grid flex-1 gap-2">
                 <Label>Url Banner</Label>
-                <Textarea
+                <Input
                   name="url_banner"
                   placeholder="Url Banner"
                   value={data.url_banner || ""}
+                  type="text"
                   onChange={(e) =>
                     setData({ ...data, url_banner: e.target.value })
                   }
                   required
-                ></Textarea>
+                ></Input>
               </div>
             </div>
             <div className="flex items-center space-x-2 py-2">
               <div className="grid flex-1 gap-2">
                 <Label>Url Gambar Kampus Terkait</Label>
-                <Textarea
+                <Input
                   name="url_image_kampus_terkait"
                   placeholder="Url Gambar Kampus Terkait"
                   value={data.url_image_kampus_terkait || ""}
+                  type="text"
                   onChange={(e) =>
                     setData({
                       ...data,
@@ -210,7 +212,7 @@ export default function FormEdit({ id }: FormEditProps) {
                     })
                   }
                   required
-                ></Textarea>
+                ></Input>
               </div>
             </div>
             <div className="flex items-center space-x-2 py-2">

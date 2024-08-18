@@ -78,7 +78,7 @@ export async function Edit(formData: FormData) {
     const kategorialasan = formData.get("kategori_alasan") as string;
     const kategorikampus = formData.get("kategori_kampus") as string;
     const duniaperkuliahan = formData.get("dunia_perkuliahan") as string;
- const url_banner = formData.get("url_banner") as string;
+    const url_banner = formData.get("url_banner") as string;
     const url_kampus_terkait = formData.get("url_image_kampus_terkait") as string;
     await prisma.prodi.update({
       where: {
