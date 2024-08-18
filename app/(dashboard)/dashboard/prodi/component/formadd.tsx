@@ -141,11 +141,7 @@ export default function FormKategoriSkill() {
             <div className="flex items-center space-x-2 py-2">
               <div className="grid flex-1 gap-2">
                 <Label>Url Banner</Label>
-                <Input
-                  name="url_banner"
-                  placeholder="Url Banner"
-                  required
-                ></Input>
+                <Input name="url_banner" placeholder="Url Banner"></Input>
               </div>
             </div>
             <div className="flex items-center space-x-2 py-2">
@@ -154,7 +150,6 @@ export default function FormKategoriSkill() {
                 <Input
                   name="url_image_kampus_terkait"
                   placeholder="Url Image Dunia Perkuliahan"
-                  required
                 ></Input>
               </div>
             </div>
