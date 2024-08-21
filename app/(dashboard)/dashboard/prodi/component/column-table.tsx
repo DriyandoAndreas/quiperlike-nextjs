@@ -70,7 +70,6 @@ export const column: ColumnDef<Prodi>[] = [
 
     cell: ({ row }) => {
       const ListData = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

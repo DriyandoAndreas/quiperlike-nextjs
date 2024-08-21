@@ -48,8 +48,8 @@ export async function Create(formData: FormData) {
         kategori_skill: kategoriskill,
         kategori_alasan: kategorialasan,
         kategori_kampus: kategorikampus,
-       dunia_perkuliahan: duniaperkuliahan,
-       url_banner: url_banner,
+        dunia_perkuliahan: duniaperkuliahan,
+        url_banner: url_banner,
         url_image_kampus_terkait: url_kampus_terkait,
       },
     });
@@ -70,6 +70,21 @@ export async function Create(formData: FormData) {
 export async function Edit(formData: FormData) {
   try {
     const id = Number(formData.get("id"));
+    console.log("ID to update:", id);
+
+    // Cek apakah record dengan id tersebut ada di database
+    const existingProdi = await prisma.prodi.findFirst({
+      where: { prodi_id: id },
+    });
+
+    if (!existingProdi) {
+      console.error("Record not found");
+      return {
+        status: 404,
+        message: "Data tidak ditemukan",
+      };
+    }
+
     const namaprodi = formData.get("nama_prodi") as string;
     const deskripsiprodi = formData.get("deskripsi_prodi") as string;
     const prospekkerja = formData.get("prospek_kerja_prodi") as string;
@@ -80,27 +95,29 @@ export async function Edit(formData: FormData) {
     const duniaperkuliahan = formData.get("dunia_perkuliahan") as string;
     const url_banner = formData.get("url_banner") as string;
     const url_kampus_terkait = formData.get("url_image_kampus_terkait") as string;
+
     await prisma.prodi.update({
       where: {
-        prodi_id : id,
+        prodi_id: id,
       },
-     data: {
+      data: {
         nama_prodi: namaprodi,
         deskripsi_prodi: deskripsiprodi,
         prospek_kerja_prodi: prospekkerja,
         bidang_studi: bidangstudi,
         kategori_skill: kategoriskill,
         kategori_alasan: kategorialasan,
-       kategori_kampus: kategorikampus,
-       dunia_perkuliahan: duniaperkuliahan,
+        kategori_kampus: kategorikampus,
+        dunia_perkuliahan: duniaperkuliahan,
         url_banner: url_banner,
         url_image_kampus_terkait: url_kampus_terkait,
       },
     });
-    revalidatePath("/dashboard/prodi")
+
+    revalidatePath("/dashboard/prodi");
     return {
       status: 200,
-      message: "berhasil ditambahkan",
+      message: "Data berhasil diedit",
     };
   } catch (error) {
     console.error("Error:", error);
@@ -110,6 +127,7 @@ export async function Edit(formData: FormData) {
     };
   }
 }
+
 //delete
 export async function Delete(id:number) {
   try {

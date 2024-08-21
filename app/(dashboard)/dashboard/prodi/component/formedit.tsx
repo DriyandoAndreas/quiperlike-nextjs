@@ -121,6 +121,7 @@ export default function FormEdit({ id }: FormEditProps) {
         <DialogContent className="max-w-xl max-h-full overflow-auto m-4">
           <form onSubmit={handleSubmit}>
             <DialogHeader className="py-2">
+              <input type="hidden" name="id" value={id} />
               <DialogTitle>Form Tambah Data</DialogTitle>
               <DialogDescription>Tambahkan data prodi</DialogDescription>
             </DialogHeader>
