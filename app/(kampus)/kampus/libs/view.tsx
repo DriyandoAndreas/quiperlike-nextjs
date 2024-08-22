@@ -37,7 +37,6 @@ export default function ViewKampus() {
   const [kampusData, setKampusData] = useState<Kampus[]>([]);
   const [provinces, setProvinces] = useState<(string | null)[]>([]);
   const [bidangStudi, setBidangStudi] = useState<(string | null)[]>([]);
-  const [showFilters, setShowFilters] = useState(true);
 
   useEffect(() => {
     async function fetchAll() {
@@ -66,13 +65,13 @@ export default function ViewKampus() {
   const handleFilterByProvince = async (province: string) => {
     if (province === "all") {
       const allData = await fetchall();
-       const formattedData = allData.map((item: any) => ({
-         kampus_terkait_id: item.kampus_terkait_id,
-         status_kampus: item.status_kampus,
-         url_kampus: item.url_kampus,
-         nama_kampus: item.nama_kampus,
-         url_gambar: item.url_gambar ? item.url_gambar : "/default-image.jpg",
-       }));
+      const formattedData = allData.map((item: any) => ({
+        kampus_terkait_id: item.kampus_terkait_id,
+        status_kampus: item.status_kampus,
+        url_kampus: item.url_kampus,
+        nama_kampus: item.nama_kampus,
+        url_gambar: item.url_gambar ? item.url_gambar : "/default-image.jpg",
+      }));
       setKampusData(formattedData);
     } else {
       const filteredData = await filterByProvince(province);
