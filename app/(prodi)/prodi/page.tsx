@@ -1,5 +1,5 @@
 import React from 'react'
-import ViewProdi from './libs/components/viewprodi';
+import ViewProdi from './libs/view';
 
 export default function Prodi() {
   return (

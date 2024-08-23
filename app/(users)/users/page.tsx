@@ -3,7 +3,7 @@ import ViewBidangStudi from "../../libs/components/viewbidangstudi";
 export default function page() {
   return (
     <>
-      <ViewBidangStudi />
+      <div>User Area</div>
     </>
   );
 }
