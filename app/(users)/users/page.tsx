@@ -1,5 +1,5 @@
 import React from "react";
-import ViewBidangStudi from "../../libs/components/viewbidangstudi";
+import ViewBidangStudi from "../../libs/homesection";
 export default function page() {
   return (
     <>

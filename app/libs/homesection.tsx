@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { fetchall } from "@/actions/mainview";
 type bidangstudi = {
   bidang_studi_id: number;
   nama_bidang_studi: string;
@@ -10,18 +9,7 @@ type bidangstudi = {
 import { useState, useEffect } from "react";
 import Link from "next/link";
 export default function ViewBidangStudi() {
-  const [data, setData] = useState<bidangstudi[]>([]);
-  useEffect(() => {
-    async function getData() {
-      const datas = await fetchall();
-      if (datas) {
-        setData(datas);
-      } else {
-        console.error("Data not found");
-      }
-    }
-    getData();
-  }, []);
+ 
   return (
     <>
       <div className="md:flex items-center py-8 gap-8">

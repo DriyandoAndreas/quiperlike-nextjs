@@ -1,4 +1,4 @@
-import ViewBidangStudi from "../libs/components/viewbidangstudi";
+import ViewBidangStudi from "../libs/homesection";
 
 export default function Home() {
   return (
