@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ViewProdi from './libs/view';
+import Loading from './loading';
 
 export default function Prodi() {
   return (
     <>
-      <ViewProdi />
+      <Suspense fallback={<Loading />}>
+        <ViewProdi />
+      </Suspense>
     </>
   );
 }

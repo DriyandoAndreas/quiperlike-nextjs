@@ -3,17 +3,18 @@
 import prisma from "@/lib/prismadb";
 import { revalidatePath } from "next/cache";
 
+export async  function fetchall() {
+    const datas = await prisma.prodi.findMany();
+    return datas;
+}
 export async function fetchTotalProdiCount() {
-  // Hitung jumlah seluruh prodi dari semua bidang_studi
   const totalProdiCount = await prisma.prodi.count();
   return totalProdiCount;
 }
 
 export async function filter() {
-  // Ambil semua bidang_studi
   const bidangStudis = await prisma.bidang_studi.findMany();
 
-  // Iterasi melalui setiap bidang_studi untuk menghitung jumlah prodi
   const datas = await Promise.all(bidangStudis.map(async (bidang) => {
     const countProdi = await prisma.prodi.count({
       where: {
@@ -21,7 +22,6 @@ export async function filter() {
       },
     });
 
-    // Kembalikan data dengan jumlah prodi
     return {
       ...bidang,
       _count: {
@@ -32,8 +32,6 @@ export async function filter() {
 
   return datas;
 }
-
-
 
 export async function filterdata(bidangstudi: string) {
     const bidangstudiparam = bidangstudi;
@@ -46,9 +44,5 @@ export async function filterdata(bidangstudi: string) {
         }
     )
     revalidatePath("/prodi");
-    return datas;
-}
-export async  function fetchall() {
-    const datas = await prisma.prodi.findMany();
     return datas;
 }

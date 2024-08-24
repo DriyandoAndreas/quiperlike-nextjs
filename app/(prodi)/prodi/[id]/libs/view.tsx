@@ -47,8 +47,9 @@ export default function ViewDetail({ id }: { id: string }) {
   const [skilldata, setSkillData] = useState<skill[]>([]); // Menggunakan array of skill
   const [alasandata, setAlasanData] = useState<alasan[]>([]); // Menggunakan array of skill
   const [kampusdata, setKampusData] = useState<kampus[]>([]); // Menggunakan array of skill
-    //
-     const [showFullDescription, setShowFullDescription] = useState(false);
+  // !remove use effect
+  // TODO: gunakan loading component
+    const [showFullDescription, setShowFullDescription] = useState(false);
     const [showFullProspek, setShowFullProspek] = useState(false);
       const [showFullAlasan, setShowFullAlasan] = useState<boolean[]>([]);
   useEffect(() => {

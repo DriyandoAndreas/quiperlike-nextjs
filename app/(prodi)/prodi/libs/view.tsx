@@ -49,17 +49,20 @@ export default function ProdiPage() {
   const [totalProdiCount, setTotalProdiCount] = useState<number>(0);
 
   //TODO: remove use effect
-  // * mungkin bisa pakai server component saja tidak perlu pakai use effect
+  // * mungkin bisa pakai swr
   // * supaya bisa menggunakan loading component
   useEffect(() => {
+    // Fetch initial filter data (list of bidang studi)
     async function fetchFilters() {
       const fetchedFilters = await filter();
       setFilters(fetchedFilters);
     }
+    //total bidang studi pada bidang studi
     async function fetchTotalProdiCountData() {
       const count = await fetchTotalProdiCount();
       setTotalProdiCount(count);
     }
+    // Fetch all Prodi data initially
     async function fetchInitialProdiData() {
       const allProdi = await fetchall();
       setProdiData(allProdi);
@@ -79,7 +82,7 @@ export default function ProdiPage() {
     const filteredData = await filterdata(bidangstudi);
     setProdiData(filteredData);
   };
-  // *  end of todo
+  // * end of todo
   return (
     <>
       <div className="bg-blue-200 py-4 dark:bg-blue-800">
