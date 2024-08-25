@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import useSWR from "swr";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   Card,
@@ -23,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Loading from "../loading";
 
 type Filter = {
   bidang_studi_id: number;
@@ -44,45 +46,36 @@ type Prodi = {
 };
 
 export default function ProdiPage() {
-  const [filters, setFilters] = useState<Filter[]>([]);
-  const [prodiData, setProdiData] = useState<Prodi[]>([]);
-  const [totalProdiCount, setTotalProdiCount] = useState<number>(0);
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
 
-  //TODO: remove use effect
-  // * mungkin bisa pakai swr
-  // * supaya bisa menggunakan loading component
-  useEffect(() => {
-    // Fetch initial filter data (list of bidang studi)
-    async function fetchFilters() {
-      const fetchedFilters = await filter();
-      setFilters(fetchedFilters);
-    }
-    //total bidang studi pada bidang studi
-    async function fetchTotalProdiCountData() {
-      const count = await fetchTotalProdiCount();
-      setTotalProdiCount(count);
-    }
-    // Fetch all Prodi data initially
-    async function fetchInitialProdiData() {
-      const allProdi = await fetchall();
-      setProdiData(allProdi);
-    }
+  // Fetching all Prodi data
+  const { data: prodiData, error: prodiError } = useSWR("prodi", fetchall);
 
-    fetchFilters();
-    fetchTotalProdiCountData();
-    fetchInitialProdiData();
-  }, []);
+  // Fetching filters
+  const { data: filters, error: filterError } = useSWR("filters", filter);
 
-  const handleFilterAll = async () => {
-    const allData = await fetchall();
-    setProdiData(allData);
-  };
+  // Fetching total Prodi count
+  const { data: totalProdiCount, error: totalProdiCountError } = useSWR(
+    "totalProdiCount",
+    fetchTotalProdiCount
+  );
 
-  const handleFilterByBidangStudi = async (bidangstudi: string) => {
-    const filteredData = await filterdata(bidangstudi);
-    setProdiData(filteredData);
-  };
-  // * end of todo
+  // Handle errors
+  if (prodiError || filterError || totalProdiCountError) {
+    return <div>Error loading data</div>;
+  }
+
+  // Handle loading states
+  if (!prodiData || !filters || !totalProdiCount) {
+    return <Loading />;
+  }
+
+  // Filtering prodi data based on selected filter
+  const filteredProdiData =
+    selectedFilter === "all"
+      ? prodiData
+      : prodiData.filter((item) => item.bidang_studi === selectedFilter);
+
   return (
     <>
       <div className="bg-blue-200 py-4 dark:bg-blue-800">
@@ -91,13 +84,8 @@ export default function ProdiPage() {
         </div>
         <div className="flex gap-4 m-8">
           <Select
-            onValueChange={(value) => {
-              if (value === "all") {
-                handleFilterAll();
-              } else {
-                handleFilterByBidangStudi(value);
-              }
-            }}
+            onValueChange={(value) => setSelectedFilter(value)}
+            defaultValue="all"
           >
             <SelectTrigger className="w-64">
               <SelectValue placeholder="Pilih Bidang Studi" />
@@ -123,7 +111,7 @@ export default function ProdiPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-8">
-        {prodiData.map((item) => (
+        {filteredProdiData.map((item) => (
           <Card
             key={item.prodi_id}
             className="transition ease-in-out delay-150 lg:hover:-translate-y-1 lg:hover:scale-110 lg:hover: duration-300 drop-shadow-lg lg:hover:filter-none"
