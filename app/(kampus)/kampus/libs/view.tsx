@@ -109,7 +109,7 @@ export default function ViewKampus() {
             <SelectContent className="bg-blue-400 text-white">
               <SelectItem value="all">Tampilkan Semua Provinsi</SelectItem>
               {provinces.map((province, index) => (
-                <SelectItem key={index} value={province || ""}>
+                <SelectItem key={index} value={province || "all"}>
                   {province}
                 </SelectItem>
               ))}
@@ -123,7 +123,7 @@ export default function ViewKampus() {
             <SelectContent className="bg-blue-400 text-white">
               <SelectItem value="all">Tampilkan Semua Bidang Studi</SelectItem>
               {bidangStudi.map((bidang, index) => (
-                <SelectItem key={index} value={bidang || ""}>
+                <SelectItem key={index} value={bidang || "all"}>
                   {bidang}
                 </SelectItem>
               ))}

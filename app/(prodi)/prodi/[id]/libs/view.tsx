@@ -44,9 +44,9 @@ type kampus = {
 
 export default function ViewDetail({ id }: { id: string }) {
   const [data, setData] = useState<prodi | null>(null);
-  const [skilldata, setSkillData] = useState<skill[]>([]); // Menggunakan array of skill
-  const [alasandata, setAlasanData] = useState<alasan[]>([]); // Menggunakan array of skill
-  const [kampusdata, setKampusData] = useState<kampus[]>([]); // Menggunakan array of skill
+  const [skilldata, setSkillData] = useState<skill[]>([]); 
+  const [alasandata, setAlasanData] = useState<alasan[]>([]); 
+  const [kampusdata, setKampusData] = useState<kampus[]>([]); 
   // !remove use effect
   // TODO: gunakan loading component
     const [showFullDescription, setShowFullDescription] = useState(false);
